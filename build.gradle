@@ -25,17 +25,15 @@ subprojects {
 		}
 	}
 
-
 	dependencies {
-		implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
+		implementation 'org.springframework.boot:spring-boot-starter-web'
 		implementation 'org.springframework.boot:spring-boot-starter'
 
 		compileOnly 'org.projectlombok:lombok'
 		annotationProcessor 'org.projectlombok:lombok'
 
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
-		testCompileOnly 'org.projectlombok:lombok'
-
+		testImplementation 'org.assertj:assertj-core'
 	}
 
 	test {
@@ -78,6 +76,7 @@ project(':application') {
 
 project(':domain') {
 	dependencies {
+		implementation project(':infrastructure')
 		testImplementation project(':boot')
 	}
 	bootJar { enabled = false }
@@ -86,7 +85,6 @@ project(':domain') {
 
 project(':infrastructure') {
 	dependencies {
-		implementation project(':domain')
 		testImplementation project(':boot')
 	}
 	bootJar { enabled = false }
