@@ -4,30 +4,79 @@ plugins {
 	id 'java'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+allprojects {
+	repositories {
+		mavenCentral()
 	}
 }
 
-repositories {
-	mavenCentral()
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	group = 'com.example'
+	version = '0.1.0'
+	sourceCompatibility = '11'
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+
+	dependencies {
+
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	}
+
+	test {
+		useJUnitPlatform()
+	}
 }
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+project(':boot') {
+	dependencies {
+		implementation project(':presentation')
+		implementation project(':application')
+		implementation project(':domain')
+		implementation project(':infrastructure')
+	}
+	bootJar { enabled = true }
+	jar { enabled = true }
 }
 
-test {
-	useJUnitPlatform()
+project(':presentation') {
+	dependencies {
+		implementation project(':application')
+	}
+	bootJar { enabled = false }
+	jar { enabled = true }
+}
+
+project(':application') {
+	dependencies {
+		implementation project(':domain')
+	}
+	bootJar { enabled = false }
+	jar { enabled = true }
+}
+
+project(':domain') {
+	dependencies {
+		implementation project(':infrastructure')
+	}
+	bootJar { enabled = false }
+	jar { enabled = true }
+}
+
+project(':infrastructure') {
+	dependencies {
+	}
+	bootJar { enabled = false }
+	jar { enabled = true }
 }

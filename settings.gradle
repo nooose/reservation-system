@@ -1,1 +1,12 @@
 rootProject.name = 'reservation'
+
+include 'boot'
+include 'presentation'
+include 'application'
+include 'domain'
+include 'infrastructure'
+
+def subProjectDir = "src";
+for (project in rootProject.children) {
+    project.projectDir = file("${subProjectDir}/${project.name}")
+}
