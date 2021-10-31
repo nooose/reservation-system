@@ -1,7 +1,9 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.CompanyCategory;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue("C")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class Company extends Member{
 
