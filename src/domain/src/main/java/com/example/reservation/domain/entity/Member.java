@@ -3,12 +3,17 @@ package com.example.reservation.domain.entity;
 import com.example.reservation.domain.Address;
 import com.example.reservation.domain.enumtype.MemberRole;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@EntityListeners(AuditingEntityListener.class)
 @DiscriminatorColumn(name = "type")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,17 +28,20 @@ public abstract class Member {
 
     private String password;
 
-    private String name;
-
     private String nickName;
+
+    private String name;
 
     private String phoneNumber;
 
     @Embedded
     private Address address;
 
-    private Date date;
-
     @Enumerated(EnumType.STRING)
     private MemberRole memberRole;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    private LocalDateTime lastLogin;
 }

@@ -7,6 +7,7 @@ import com.example.reservation.repository.MemberRepository;
 import com.example.reservation.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -20,13 +21,16 @@ public class UserServiceImplV2 implements UserService {
     @Override
     public void testSaveUser() {
         Address address = new Address("Seoul", "test", "123-456");
+        LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
+
         User userA = new User(1L, "test@test.com", "12345",
                 "test", "test", "010-1234-5678",
-                address,new Date(), MemberRole.BASIC, 100);
+                address, MemberRole.BASIC, now, now, 100);
 
         User userB = new User(2L, "test@test.com", "12345",
                 "test", "test", "010-1234-5678",
-                address,new Date(), MemberRole.BASIC, 100);
+                address, MemberRole.BASIC, now, now, 100);
+
 
 
         memberRepository.save(userA);
