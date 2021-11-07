@@ -25,9 +25,17 @@ public class UserServiceImplV1 implements UserService {
         LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
 
 
-        User user = new User(1L, "test@test.com", "12345",
-                "test", "test", "010-1234-5678",
-                address, MemberRole.BASIC, now, now, 100);
+        User user = User.builder()
+                .id(1L)
+                .email("test@test.com")
+                .password("12345")
+                .nickName("test")
+                .name("test")
+                .phoneNumber("010-1234-5678")
+                .address(address)
+                .memberRole(MemberRole.BASIC)
+                .lastLogin(now)
+                .point(100).build();
 
         memberRepository.save(user);
     }

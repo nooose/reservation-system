@@ -21,15 +21,28 @@ public class UserServiceImplV2 implements UserService {
     @Override
     public void testSaveUser() {
         Address address = new Address("Seoul", "test", "123-456");
-        LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
+        LocalDateTime now = LocalDateTime.now();
 
-        User userA = new User(1L, "test@test.com", "12345",
-                "test", "test", "010-1234-5678",
-                address, MemberRole.BASIC, now, now, 100);
+        User userA = User.builder()
+                .id(1L)
+                .email("test@test.com").password("12345")
+                .nickName("test").name("test")
+                .phoneNumber("010-1234-5678").address(address)
+                .memberRole(MemberRole.BASIC)
+                .lastLogin(now)
+                .point(100).build();
 
-        User userB = new User(2L, "test@test.com", "12345",
-                "test", "test", "010-1234-5678",
-                address, MemberRole.BASIC, now, now, 100);
+        User userB = User.builder()
+                .id(1L)
+                .email("test@test.com").password("12345")
+                .nickName("test").name("test")
+                .phoneNumber("010-1234-5678").address(address)
+                .memberRole(MemberRole.BASIC)
+                .lastLogin(now)
+                .point(100).build();
+
+
+
 
 
 
