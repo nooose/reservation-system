@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("N")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 public class Notice extends Board{
 
