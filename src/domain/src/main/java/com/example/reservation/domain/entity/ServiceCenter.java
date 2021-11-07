@@ -24,8 +24,8 @@ public class ServiceCenter extends Board{
     private ProcessType process;
 
     @Builder
-    public ServiceCenter(Long id, String title, String contents, Member writer, String category, LocalDateTime createdAt, ProcessType process) {
-        super(id, title, contents, writer, category, createdAt);
+    public ServiceCenter(Long id, String title, String contents, Member member, String category, LocalDateTime createdAt, ProcessType process) {
+        super(id, title, contents, member, category, createdAt);
         this.process = process;
     }
 }

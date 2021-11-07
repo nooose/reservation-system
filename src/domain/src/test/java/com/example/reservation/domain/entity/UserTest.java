@@ -13,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -37,16 +38,16 @@ class UserTest {
                 .memberRole(MemberRole.BASIC)
                 .lastLogin(now)
                 .point(100).build();
-
-
         
         // when
         memberRepository.save(user);
-        Member findUser = memberRepository.findById(user.getId()).get();
+        User findUser = (User) memberRepository.findById(user.getId()).get();
+
 
         // then
         System.out.println("=====");
         assertThat(findUser.getName()).isEqualTo("test");
+        assertThat(findUser.getPoint()).isEqualTo(100);
     }
 
     @Test
@@ -68,10 +69,26 @@ class UserTest {
         // when
         memberRepository.save(user);
         Member findUser = memberRepository.findById(user.getId()).get();
-        
+
         //then
         System.out.println("=====");
         assertThat(findUser.getCreatedAt()).isNotEqualTo(LocalDateTime.now());
     }
-
+    
+    @Test
+    @DisplayName("Builder 테스트")
+    void buildTest() {
+        // given
+        User user = User.builder()
+                .lastLogin(LocalDateTime.now())
+                .id(1L).email("test@test.com")
+                .build();
+        
+        // when
+        
+        // then
+        assertThat(user.getEmail()).isEqualTo("test@test.com");
+        assertThat(user.getName()).isNull();
+        assertThat(user.getId()).isNotEqualTo(2L);
+    }
 }

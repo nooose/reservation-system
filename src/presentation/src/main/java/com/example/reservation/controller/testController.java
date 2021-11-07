@@ -21,4 +21,10 @@ public class testController {
         userService.testSaveUser();
         return "OK";
     }
+
+    @GetMapping
+    public String test() {
+        userService.testSaveuser2();
+        return "OK-2";
+    }
 }

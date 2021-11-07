@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -20,7 +22,7 @@ import java.util.Date;
 @Getter
 public abstract class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
@@ -39,6 +41,10 @@ public abstract class Member {
 
     @Enumerated(EnumType.STRING)
     private MemberRole memberRole;
+
+    @OneToMany(mappedBy = "member")
+    List<Board> boards = new ArrayList<>();
+
 
     @CreatedDate
     private LocalDateTime createdAt;

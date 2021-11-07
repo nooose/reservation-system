@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("U")
@@ -22,8 +22,8 @@ public class User extends Member{
 
 
     @Builder
-    public User(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, LocalDateTime createdAt, LocalDateTime lastLogin, int point) {
-        super(id, email, password, nickName, name, phoneNumber, address, memberRole, createdAt, lastLogin);
+    public User(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, int point) {
+        super(id, email, password, nickName, name, phoneNumber, address, memberRole, boards, createdAt, lastLogin);
         this.point = point;
     }
 }

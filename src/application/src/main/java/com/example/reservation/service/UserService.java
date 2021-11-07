@@ -8,4 +8,5 @@ import java.util.Date;
 
 public interface UserService {
     void testSaveUser();
+    void testSaveuser2();
 }

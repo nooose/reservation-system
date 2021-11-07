@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("A")
@@ -24,8 +25,8 @@ public class Admin extends Member{
     private AdminGrade adminGrade;
 
     @Builder
-    public Admin(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, LocalDateTime createdAt, LocalDateTime lastLogin, AdminGrade adminGrade) {
-        super(id, email, password, nickName, name, phoneNumber, address, memberRole, createdAt, lastLogin);
+    public Admin(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, AdminGrade adminGrade) {
+        super(id, email, password, nickName, name, phoneNumber, address, memberRole, boards, createdAt, lastLogin);
         this.adminGrade = adminGrade;
     }
 }

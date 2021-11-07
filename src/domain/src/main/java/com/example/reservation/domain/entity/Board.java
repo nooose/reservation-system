@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Getter
 public abstract class Board {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
     private Long id;
 
@@ -27,11 +27,16 @@ public abstract class Board {
 
     private String contents;
 
-    private Member writer;
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     private String category;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }

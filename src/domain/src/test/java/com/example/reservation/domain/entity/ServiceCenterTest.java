@@ -4,6 +4,7 @@ import com.example.reservation.domain.Address;
 import com.example.reservation.domain.enumtype.MemberRole;
 import com.example.reservation.domain.enumtype.ProcessType;
 import com.example.reservation.repository.BoardRepository;
+import com.example.reservation.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +15,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -24,6 +27,9 @@ class ServiceCenterTest {
 
     @Autowired
     private BoardRepository boardRepository;
+    @Autowired
+    private MemberRepository memberRepository;
+
 
     @Test
     @DisplayName("서비스센터 조회 테스트 값이 있는 경우")
@@ -32,32 +38,35 @@ class ServiceCenterTest {
         Address address = new Address("Seoul", "test", "123-456");
         LocalDateTime now = LocalDateTime.now();
 
+        List<Board> boardList = new ArrayList<>();
         User user = User.builder()
-                .id(1L)
                 .email("test@test.com").password("12345")
                 .nickName("test").name("test")
                 .phoneNumber("010-1234-5678").address(address)
                 .memberRole(MemberRole.BASIC)
+                .boards(boardList)
                 .lastLogin(now)
                 .point(100).build();
-        
+
+        memberRepository.save(user);
+
         ServiceCenter serviceCenter = ServiceCenter.builder()
-                .id(1L)
-                .writer(user)
                 .title("testTitle")
                 .contents("내용테스트")
                 .process(ProcessType.PRE)
                 .category("공지글")
                 .build();
-        
+
+        user.getBoards().add(serviceCenter);
+        serviceCenter.setMember(user);
+
         //when
         boardRepository.save(serviceCenter);
-        Optional<Board> findServiceCenter = boardRepository.findById(2L);
-        ServiceCenter findServiceCenterA = (ServiceCenter) findServiceCenter.orElseGet(() -> new ServiceCenter());
+        Board board = boardRepository.findById(1L).get();
 
         //then
         System.out.println("=====");
-        assertThat(findServiceCenterA.getProcess()).isEqualTo(ProcessType.PRE);
+        assertThat(board.getId()).isEqualTo(1L);
 
     }
 
@@ -80,7 +89,6 @@ class ServiceCenterTest {
         ServiceCenter serviceCenter = ServiceCenter.builder()
                 .id(1L)
                 .title("testTitle")
-                .writer(user)
                 .contents("내용테스트")
                 .process(ProcessType.PRE)
                 .category("공지글")
@@ -88,12 +96,19 @@ class ServiceCenterTest {
 
         //when
         boardRepository.save(serviceCenter);
-        Optional<Board> findServiceCenter = boardRepository.findById(2L);
-        ServiceCenter findServiceCenterA = (ServiceCenter) findServiceCenter.orElseGet(() -> new ServiceCenter());
+        Optional<Board> byId = boardRepository.findById(3L);
+
+        if (byId.isPresent()) {
+            System.out.println("값 존재합니다.");
+        } else {
+            System.out.println("값 없습니다.");
+        }
+
+        ServiceCenter findServiceCenter = (ServiceCenter) byId.orElseGet(() -> ServiceCenter.builder().build());
 
         //then
         System.out.println("=====");
-        assertThat(findServiceCenterA.getTitle()).isNull();
+        assertThat(findServiceCenter.getTitle()).isNull();
     }
 
 }
