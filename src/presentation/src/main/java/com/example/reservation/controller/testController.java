@@ -22,9 +22,15 @@ public class testController {
         return "OK";
     }
 
-    @GetMapping
-    public String test() {
+    @GetMapping("/test1")
+    public String test1() {
         userService.testSaveuser2();
         return "OK-2";
+    }
+
+    @GetMapping("/test2")
+    public String test2() {
+        userService.testSaveuser3();
+        return "OK-3";
     }
 }

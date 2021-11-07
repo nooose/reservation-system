@@ -2,6 +2,7 @@ package com.example.reservation.service.Impl;
 
 import com.example.reservation.domain.Address;
 import com.example.reservation.domain.entity.Board;
+import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.ServiceCenter;
 import com.example.reservation.domain.enumtype.MemberRole;
 import com.example.reservation.domain.entity.User;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImplV2 implements UserService {
@@ -49,11 +51,6 @@ public class UserServiceImplV2 implements UserService {
                 .lastLogin(now)
                 .point(100).build();
 
-
-
-
-
-
         memberRepository.save(userA);
         memberRepository.save(userB);
     }
@@ -82,7 +79,7 @@ public class UserServiceImplV2 implements UserService {
                 .category("공지글")
                 .build();
 
-        user.getBoards().add(serviceCenterA);
+//        user.getBoards().add(serviceCenterA);
         serviceCenterA.setMember(user);
 
         boardRepository.save(serviceCenterA);
@@ -94,16 +91,20 @@ public class UserServiceImplV2 implements UserService {
                 .category("공지글")
                 .build();
 
-        user.getBoards().add(serviceCenterB);
+//        user.getBoards().add(serviceCenterB);
         serviceCenterB.setMember(user);
 
         boardRepository.save(serviceCenterB);
 
+    }
 
-        System.out.println("serviceCenterB.getMember().getName() = " + serviceCenterB.getMember().getName());
-
-        //then
-        System.out.println("=====");
-
+    @Override
+    public void testSaveuser3() {
+        System.out.println("===User 조회===");
+        Member member = memberRepository.findById(1L).get();
+        System.out.println("member = " + member + "의 boards 리스트");
+        for (Board board : member.getBoards()) {
+            System.out.println("board = " + board.getTitle());
+        }
     }
 }
