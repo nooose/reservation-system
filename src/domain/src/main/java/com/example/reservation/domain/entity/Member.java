@@ -1,17 +1,17 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.MemberRole;
+import com.example.reservation.domain.enumtype.MemberRole;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type")
 @NoArgsConstructor
 @AllArgsConstructor
-@DiscriminatorColumn(name = "type")
 @Getter
 public abstract class Member {
 

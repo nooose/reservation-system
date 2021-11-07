@@ -1,7 +1,7 @@
 package com.example.reservation.domain.entity;
 
 
-import com.example.reservation.domain.AdminGrade;
+import com.example.reservation.domain.enumtype.AdminGrade;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.MemberRole;
+import com.example.reservation.domain.enumtype.MemberRole;
 import com.example.reservation.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

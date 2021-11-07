@@ -1,6 +1,6 @@
 package com.example.reservation.domain.entity;
 
-import com.example.reservation.domain.CompanyCategory;
+import com.example.reservation.domain.enumtype.CompanyCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
