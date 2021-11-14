@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,4 +51,17 @@ public abstract class Member {
     private LocalDateTime createdAt;
 
     private LocalDateTime lastLogin;
+
+
+    public boolean isNull() {
+        if ( this.getId() == null ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void changeNickName(String nickName) {
+        this.nickName = nickName;
+    }
 }
