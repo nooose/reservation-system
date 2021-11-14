@@ -8,11 +8,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,6 +21,9 @@ public class Company extends Member{
 
     private String registrationNumber;
     private String description;
+
+    @OneToMany(mappedBy = "company")
+    List<Company> companies = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private CompanyCategory companyCategory;

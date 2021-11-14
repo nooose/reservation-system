@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,9 +23,16 @@ public class User extends Member{
     private int point;
 
 
+
+    @OneToMany(mappedBy = "user")
+    List<Order> orders = new ArrayList<>();
+
+
     @Builder
     public User(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, int point) {
         super(id, email, password, nickName, name, phoneNumber, address, memberRole, boards, createdAt, lastLogin);
         this.point = point;
     }
+
+
 }
