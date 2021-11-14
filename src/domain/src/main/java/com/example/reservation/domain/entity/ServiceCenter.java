@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Entity
 @DiscriminatorValue("SC")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 
 public class ServiceCenter extends Board{

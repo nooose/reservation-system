@@ -16,7 +16,6 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("U")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 public class User extends Member{

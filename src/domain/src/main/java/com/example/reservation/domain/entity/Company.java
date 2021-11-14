@@ -23,7 +23,7 @@ public class Company extends Member{
     private String description;
 
     @OneToMany(mappedBy = "company")
-    List<Company> companies = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private CompanyCategory companyCategory;

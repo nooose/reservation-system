@@ -2,26 +2,30 @@ package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.enumtype.ReviewRating;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
-@AllArgsConstructor
+@DiscriminatorValue("R")
 @NoArgsConstructor
 @Getter
 public class Review extends Board {
 
-    // Order와 일대일 맵핑
     @OneToOne(mappedBy = "review")
     private Order order;
 
     @Enumerated(EnumType.STRING)
     private ReviewRating reviewRating;
 
+    @Builder
+    public Review(Long id, String title, String contents, Member member, String category, LocalDateTime createdAt, Order order, ReviewRating reviewRating) {
+        super(id, title, contents, member, category, createdAt);
+        this.order = order;
+        this.reviewRating = reviewRating;
+    }
 }

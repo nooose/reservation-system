@@ -2,6 +2,7 @@ package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.enumtype.OrderStatus;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,8 +13,8 @@ import java.time.LocalDateTime;
 
 
 @Entity
+@Table(name = "ORDER_TABLE")
 @NoArgsConstructor
-@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 public class Order {
@@ -22,6 +23,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long id;
+
     private int price;
 
 
@@ -31,12 +33,12 @@ public class Order {
 
 
     @OneToOne
-    @JoinColumn(name="review_id")
+    @JoinColumn(name = "review_id")
     private Review review;
 
 
     @ManyToOne
-    @JoinColumn(name= "item_id")
+    @JoinColumn(name="item_id")
     private Item item;
 
     @Enumerated(EnumType.STRING)
@@ -48,4 +50,17 @@ public class Order {
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+
+    @Builder
+    public Order(Long id, int price, User user, Review review, Item item, OrderStatus orderStatus, LocalDateTime createdAt, LocalDateTime startTime, LocalDateTime endTime) {
+        this.id = id;
+        this.price = price;
+        this.user = user;
+        this.review = review;
+        this.item = item;
+        this.orderStatus = orderStatus;
+        this.createdAt = createdAt;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 }
