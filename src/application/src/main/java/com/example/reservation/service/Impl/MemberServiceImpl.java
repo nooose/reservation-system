@@ -31,12 +31,11 @@ public class MemberServiceImpl implements MemberService {
         User userByEmail = (User) byEmail.orElseGet(User::new);
 
         if (userByEmail.isNull()) {
-            log.info("Email 중복 통과");
+            return true;
         } else {
+            log.info("{} email 중복", newMember.getEmail());
             return false;
         }
-
-        return true;
     }
 
     private boolean doubleCheckByPhoneNumber(Member newMember) {
@@ -44,12 +43,11 @@ public class MemberServiceImpl implements MemberService {
         User userByPhoneNumber = (User) byPhoneNumber.orElseGet(User::new);
 
         if (userByPhoneNumber.isNull()) {
-            log.info("휴대폰 번호 중복 통과");
+            return true;
         } else {
+            log.info("{} 휴대폰 번호 중복", newMember.getPhoneNumber());
             return false;
         }
-
-        return true;
     }
 
 }

@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -91,4 +91,35 @@ class UserTest {
         assertThat(user.getName()).isNull();
         assertThat(user.getId()).isNotEqualTo(2L);
     }
+    
+    
+    @Test 
+    @DisplayName("toString 출력 테스트")
+    public void toStringTest() { 
+        // given  
+        User user = new User();
+        
+        // when
+        System.out.println("user.toString() = " + user.toString());
+        
+        // then
+    }
+
+
+    @Test
+    @DisplayName("유저 닉네임 변경")
+    public void userChangeTest() {
+        // given
+        Address address = new Address("서울시", "송파구", "123-456");
+        User user = User.createUser("test@test.com", "12345", "테스트A", "박지수", "010-1234-5678", address);
+
+
+        // when
+        user.changeNickName("테스트B");
+
+
+        // then
+        assertThat(user.getNickName()).isEqualTo("테스트B");
+    }
+
 }

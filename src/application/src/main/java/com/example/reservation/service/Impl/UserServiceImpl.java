@@ -9,6 +9,10 @@ import com.example.reservation.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,14 +26,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public String getStatus(Member member) {
-        if ( !member.isNull() ) {
-            return "생성 되었습니다.";
-        } else {
-            return "생성되지 않았습니다.";
-        }
-    }
-
     public User userToEntity(UserDto userDto) {
         return User.createUser(userDto.getEmail(), userDto.getPassword(), userDto.getNickName(), userDto.getName(), userDto.getPhoneNumber(), null);
     }
@@ -42,13 +38,29 @@ public class UserServiceImpl implements UserService {
 
         if (memberService.doubleCheck(newUser)) {
             newUser = memberRepository.save(newUser);
-            log.info("가입이 되었습니다.");
+            log.info("{} 가입 성공", newUser.getEmail());
         } else {
             // 예외 처리
-            log.info("중복회원 입니다.");
+            log.info("{} 가입 실패", newUser.getEmail());
         }
 
         return newUser;
     }
 
-}
+    public User findUserById(Long id) {
+        Optional<Member> byId = memberRepository.findById(id);
+        User user = (User) byId.orElseGet(() -> {
+            log.info("{} 사용자 조회 실패", id);
+            return new User();
+        });
+
+        log.info("{} 사용자 조회 성공", user.getEmail());
+        return user;
+    }
+
+    public List<User> findUsers() {
+        List<Member> users = memberRepository.findAll();
+        log.info("모든 사용자 조회");
+        return users.stream().map(i -> (User) i).collect(Collectors.toList());
+    }
+ }
