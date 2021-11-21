@@ -2,15 +2,16 @@ package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
 import com.example.reservation.domain.enumtype.MemberRole;
-import lombok.*;
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public abstract class Member {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
@@ -40,6 +40,7 @@ public abstract class Member {
     private Address address;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private MemberRole memberRole;
 
     @OneToMany(mappedBy = "member")
@@ -50,4 +51,39 @@ public abstract class Member {
     private LocalDateTime createdAt;
 
     private LocalDateTime lastLogin;
+
+
+    public boolean isNull() {
+        return this.getId() == null;
+    }
+
+    public boolean checkEmail(Member findMember) {
+        return !this.getEmail().equals(findMember.getEmail());
+    }
+
+    public boolean checkPhoneNumber(Member findMember) {
+        return !this.getPhoneNumber().equals(findMember.getPhoneNumber());
+    }
+
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public void changeNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public void changeAddress(Address address) {
+        this.address = address;
+    }
+
+    public void changePhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
+    /**
+     * TO-DO 주소 정규식
+     */
+
 }
