@@ -46,23 +46,22 @@ public abstract class Member {
     @OneToMany(mappedBy = "member")
     List<Board> boards = new ArrayList<>();
 
-
     @CreatedDate
     private LocalDateTime createdAt;
 
     private LocalDateTime lastLogin;
 
 
-    public boolean isNull() {
+    public boolean isNullId() {
         return this.getId() == null;
     }
 
-    public boolean checkEmail(Member findMember) {
-        return !this.getEmail().equals(findMember.getEmail());
-    }
-
-    public boolean checkPhoneNumber(Member findMember) {
-        return !this.getPhoneNumber().equals(findMember.getPhoneNumber());
+    public String getSaveStatus() {
+        if (this.isNullId()) {
+            return "실패";
+        } else {
+            return "성공";
+        }
     }
 
     public void changePassword(String password) {

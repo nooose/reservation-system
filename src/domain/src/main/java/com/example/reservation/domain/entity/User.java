@@ -27,20 +27,10 @@ public class User extends Member{
         this.point = point;
     }
 
-    public static User createUser(String email, String password, String nickName, String name, String phoneNumber, Address address) {
-        return User.builder()
-                .email(email).password(password)
-                .nickName(nickName).name(name)
-                .phoneNumber(phoneNumber).address(address)
-                .memberRole(MemberRole.BASIC).point(0)
-                .build();
-    }
-
-
     @Override
     public String toString() {
         return "User.email = " + this.getEmail() + "\n"
-                + "User.nincName = " + this.getNickName() + "\n"
+                + "User.nickName = " + this.getNickName() + "\n"
                 + "User.name = " + this.getName() + "\n"
                 + "User.phoneNumber = " + this.getPhoneNumber() + "\n"
                 + "User.role = " + this.getMemberRole() + "\n"
