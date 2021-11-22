@@ -106,20 +106,4 @@ class UserTest {
     }
 
 
-    @Test
-    @DisplayName("유저 닉네임 변경")
-    public void userChangeTest() {
-        // given
-        Address address = new Address("서울시", "송파구", "123-456");
-        User user = User.createUser("test@test.com", "12345", "테스트A", "박지수", "010-1234-5678", address);
-
-
-        // when
-        user.changeNickName("테스트B");
-
-
-        // then
-        assertThat(user.getNickName()).isEqualTo("테스트B");
-    }
-
 }
