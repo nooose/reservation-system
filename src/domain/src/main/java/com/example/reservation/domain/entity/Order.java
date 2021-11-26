@@ -1,7 +1,6 @@
 package com.example.reservation.domain.entity;
 
-import com.example.reservation.domain.enumtype.OrderStatus;
-import lombok.AllArgsConstructor;
+import com.example.reservation.domain.type.OrderStatusType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,7 +41,7 @@ public class Order {
     private Item item;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private OrderStatusType orderStatus;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -52,7 +51,7 @@ public class Order {
     private LocalDateTime endTime;
 
     @Builder
-    public Order(Long id, int price, User user, Review review, Item item, OrderStatus orderStatus, LocalDateTime createdAt, LocalDateTime startTime, LocalDateTime endTime) {
+    public Order(Long id, int price, User user, Review review, Item item, OrderStatusType orderStatus, LocalDateTime createdAt, LocalDateTime startTime, LocalDateTime endTime) {
         this.id = id;
         this.price = price;
         this.user = user;

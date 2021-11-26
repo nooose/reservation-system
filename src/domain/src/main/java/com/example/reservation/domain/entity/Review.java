@@ -1,7 +1,6 @@
 package com.example.reservation.domain.entity;
 
-import com.example.reservation.domain.enumtype.ReviewRating;
-import lombok.AllArgsConstructor;
+import com.example.reservation.domain.type.ReviewRatingType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,13 +27,13 @@ public class Review{
     private Order order;
 
     @Enumerated(EnumType.STRING)
-    private ReviewRating reviewRating;
+    private ReviewRatingType reviewRating;
 
     @CreatedDate
     private LocalDateTime createAt;
 
     @Builder
-    public Review(Long id, String contents, Order order, ReviewRating reviewRating, LocalDateTime createAt) {
+    public Review(Long id, String contents, Order order, ReviewRatingType reviewRating, LocalDateTime createAt) {
         this.id = id;
         this.contents = contents;
         this.order = order;

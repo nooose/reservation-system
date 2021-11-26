@@ -1,8 +1,8 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.enumtype.MemberRole;
-import com.example.reservation.domain.enumtype.ProcessType;
+import com.example.reservation.domain.type.MemberRoleType;
+import com.example.reservation.domain.type.ProcessType;
 import com.example.reservation.repository.BoardRepository;
 import com.example.reservation.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -12,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @ExtendWith(SpringExtension.class)
@@ -43,7 +44,7 @@ class ServiceCenterTest {
                 .email("test@test.com").password("12345")
                 .nickName("test").name("test")
                 .phoneNumber("010-1234-5678").address(address)
-                .memberRole(MemberRole.BASIC)
+                .memberRole(MemberRoleType.BASIC)
                 .boards(boardList)
                 .lastLogin(now)
                 .point(100).build();
@@ -82,7 +83,7 @@ class ServiceCenterTest {
                 .email("test@test.com").password("12345")
                 .nickName("test").name("test")
                 .phoneNumber("010-1234-5678").address(address)
-                .memberRole(MemberRole.BASIC)
+                .memberRole(MemberRoleType.BASIC)
                 .lastLogin(now)
                 .point(100).build();
 
