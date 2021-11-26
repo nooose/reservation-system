@@ -81,8 +81,6 @@ public abstract class Member {
     }
 
 
-    /**
-     * TO-DO 주소 정규식
-     */
+
 
 }

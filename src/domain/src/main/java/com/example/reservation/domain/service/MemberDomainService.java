@@ -4,12 +4,12 @@ import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.User;
 import com.example.reservation.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Slf4j
-@Component
+@Service
 public class MemberDomainService {
 
     private final MemberRepository memberRepository;
@@ -53,5 +53,22 @@ public class MemberDomainService {
         }
 
         return findMember == null;
+    }
+
+    /**
+     * TO-DO 주소 정규식
+     */
+    // 010-4자리-4자리
+    public boolean phoneNumberRegExp(String phoneNumber) {
+
+        String regExp = "^010[-]?(\\d{4})[-]?(\\d{4})$"; // 010-7236-1800 or 01072361800
+
+        return phoneNumber.matches(regExp);
+    }
+
+    // 이메일 정규식
+    public boolean emailRegExp(String email){
+        String regExp = "^[a-zA-Z0-9_-]+@[a-zA-Z.]+\\.[a-zA-Z]{2,6}$";
+        return email.matches(regExp);
     }
 }
