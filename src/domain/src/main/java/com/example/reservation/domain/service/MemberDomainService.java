@@ -20,7 +20,6 @@ public class MemberDomainService {
 
 
 
-
     public User saveUser(User user, boolean isEmail, boolean isPhoneNumber) {
         User newUser = new User();
 

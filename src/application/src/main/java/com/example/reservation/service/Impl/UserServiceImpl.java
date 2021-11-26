@@ -16,10 +16,10 @@ public class UserServiceImpl implements UserService {
         this.memberDomainService = memberDomainService;
     }
 
+
     public void joinMember(User user) {
         boolean isEmail = memberDomainService.checkEmail(user.getEmail());
         boolean isPhoneNumber = memberDomainService.checkPhoneNumber(user.getPhoneNumber());
-
 
         User newUser = memberDomainService.saveUser(user, isEmail, isPhoneNumber);
 

@@ -80,7 +80,4 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
     }
 
-
-
-
 }
