@@ -2,9 +2,8 @@ package com.example.reservation.domain.entity;
 
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.enumtype.AdminGrade;
-import com.example.reservation.domain.enumtype.MemberRole;
-import lombok.AllArgsConstructor;
+import com.example.reservation.domain.type.AdminGradeType;
+import com.example.reservation.domain.type.MemberRoleType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +21,11 @@ import java.util.List;
 @Getter
 public class Admin extends Member{
     @Enumerated(EnumType.STRING)
-    private AdminGrade adminGrade;
+    private AdminGradeType adminGradeType;
 
     @Builder
-    public Admin(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, AdminGrade adminGrade) {
+    public Admin(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRoleType memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, AdminGradeType adminGradeType) {
         super(id, email, password, nickName, name, phoneNumber, address, memberRole, boards, createdAt, lastLogin);
-        this.adminGrade = adminGrade;
+        this.adminGradeType = adminGradeType;
     }
 }

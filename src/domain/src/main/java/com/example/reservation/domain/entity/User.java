@@ -1,7 +1,7 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.enumtype.MemberRole;
+import com.example.reservation.domain.type.MemberRoleType;
 import lombok.*;
 
 import javax.persistence.DiscriminatorValue;
@@ -22,7 +22,7 @@ public class User extends Member{
     List<Order> orders = new ArrayList<>();
 
     @Builder
-    private User(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, int point) {
+    private User(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRoleType memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, int point) {
         super(id, email, password, nickName, name, phoneNumber, address, memberRole, boards, createdAt, lastLogin);
         this.point = point;
     }

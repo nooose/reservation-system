@@ -32,6 +32,8 @@ public class MemberDomainService {
         return newUser;
     }
 
+
+
     public boolean checkPhoneNumber(String phoneNumber) {
         Optional<Member> findMemberById = memberRepository.findByPhoneNumber(phoneNumber);
         Member findMember = findMemberById.orElseGet(() -> null);

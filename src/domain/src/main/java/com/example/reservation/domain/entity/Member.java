@@ -1,7 +1,7 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.enumtype.MemberRole;
+import com.example.reservation.domain.type.MemberRoleType;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,7 +41,7 @@ public abstract class Member {
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    private MemberRole memberRole;
+    private MemberRoleType memberRole;
 
     @OneToMany(mappedBy = "member")
     List<Board> boards = new ArrayList<>();

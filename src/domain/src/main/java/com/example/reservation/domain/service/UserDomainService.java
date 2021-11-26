@@ -21,13 +21,42 @@ public class UserDomainService {
     }
 
 
+
+    public List<User> getUsers() {
+        List<Member> members = memberRepository.findAll();
+
+        log.info("모든 회원 정보 조회");
+
+        return members.stream()
+                .map(i -> (User) i)
+                .collect(Collectors.toList());
+    }
+
+
+    public String getUsersCount(List<User> users) {
+        return Integer.toString(users.size());
+    }
+
     public User findUserById(Long id) {
         Optional<Member> byId = memberRepository.findById(id);
         return (User) byId.orElseGet(User::new);
     }
 
-    public List<User> findUsers() {
-        List<Member> users = memberRepository.findAll();
-        return users.stream().map(i -> (User) i).collect(Collectors.toList());
+    public String getUserStatus(User user) {
+        if ( user.isNullId() ) {
+            return "해당 유저가 없습니다.";
+        } else {
+            return user.toString();
+        }
     }
+
+    public String deleteUser(User user) {
+        if ( user.isNullId() ) {
+            return "해당 유저가 없습니다.";
+        } else {
+            memberRepository.delete(user);
+            return user.getName() + "님 \n삭제 되었습니다.";
+        }
+    }
+
 }

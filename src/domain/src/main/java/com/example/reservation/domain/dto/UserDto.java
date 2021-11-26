@@ -3,7 +3,7 @@ package com.example.reservation.domain.dto;
 
 import com.example.reservation.domain.Address;
 import com.example.reservation.domain.entity.User;
-import com.example.reservation.domain.enumtype.MemberRole;
+import com.example.reservation.domain.type.MemberRoleType;
 import lombok.Data;
 
 @Data
@@ -25,7 +25,7 @@ public class UserDto {
                 .email(email).password(password)
                 .nickName(nickName).name(name)
                 .phoneNumber(phoneNumber).address(address)
-                .memberRole(MemberRole.BASIC).point(0)
+                .memberRole(MemberRoleType.BASIC).point(0)
                 .build();
     }
 }
