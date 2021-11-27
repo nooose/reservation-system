@@ -1,5 +1,6 @@
 package com.example.reservation.domain.service;
 
+import com.example.reservation.domain.dto.UserDto;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.User;
 import com.example.reservation.repository.MemberRepository;
@@ -58,15 +59,14 @@ public class UserDomainService {
         }
     }
 
-    public User updateUser(User newUser , User oldUser){
-        oldUser.changePhoneNumber(newUser.getPhoneNumber());
-        oldUser.changeNickName(newUser.getNickName());
-        oldUser.changeAddress(newUser.getAddress());
-        oldUser.changePassword(newUser.getPassword());
+    public User updateUser(User user, UserDto userDto){
+        user.changeNickName(userDto.getNickName());
+        user.changePhoneNumber(userDto.getPhoneNumber());
+        user.changeAddress(userDto.getAddress());
+        user.changePassword(userDto.getPassword());
+        log.info("업데이트 완료");
 
-        memberRepository.save(oldUser);
-
-        return oldUser;
+        return user;
     }
 
 }

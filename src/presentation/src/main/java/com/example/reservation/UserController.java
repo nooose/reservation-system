@@ -37,12 +37,12 @@ public class UserController {
         return user + "\n가입 " + user.getSaveStatus();
     }
 
-    @PostMapping("/update/user/{userId}")
-    public String setUser(@RequestBody UserDto userDto,@PathVariable Long userId) {
-        User user = userDto.toEntity(); // 바꿀 값
-        User updateUser = userService.updateUser(user , userId);
 
+    @PostMapping("/user/update/{userId}")
+    public String setUser(@PathVariable Long userId, @RequestBody UserDto userDto) {
+        User updateUser = userService.updateUser(userId, userDto);
 
+        log.info("업데이트 완료");
         return updateUser + "\n업데이트 되었습니다" ;
     }
 

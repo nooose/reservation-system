@@ -1,5 +1,6 @@
 package com.example.reservation.service.Impl;
 
+import com.example.reservation.domain.dto.UserDto;
 import com.example.reservation.domain.entity.User;
 import com.example.reservation.domain.service.MemberDomainService;
 import com.example.reservation.domain.service.UserDomainService;
@@ -7,6 +8,7 @@ import com.example.reservation.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Slf4j
@@ -49,11 +51,10 @@ public class UserServiceImpl implements UserService {
         return userDomainService.deleteUser(user);
     }
 
-    public User updateUser(User newUser, Long id){
-
-        User oldUser = userDomainService.findUserById(id);
-
-    return userDomainService.updateUser(newUser,oldUser);
+    @Transactional
+    public User updateUser(Long id, UserDto userDto){
+        User user = userDomainService.findUserById(id);
+        return userDomainService.updateUser(user, userDto);
     }
 
  }
