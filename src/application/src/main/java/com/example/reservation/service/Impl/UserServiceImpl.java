@@ -49,4 +49,11 @@ public class UserServiceImpl implements UserService {
         return userDomainService.deleteUser(user);
     }
 
+    public User updateUser(User newUser, Long id){
+
+        User oldUser = userDomainService.findUserById(id);
+
+    return userDomainService.updateUser(newUser,oldUser);
+    }
+
  }

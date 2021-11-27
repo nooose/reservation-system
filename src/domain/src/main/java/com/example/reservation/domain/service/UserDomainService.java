@@ -32,7 +32,6 @@ public class UserDomainService {
                 .collect(Collectors.toList());
     }
 
-
     public String getUsersCount(List<User> users) {
         return Integer.toString(users.size());
     }
@@ -57,6 +56,17 @@ public class UserDomainService {
             memberRepository.delete(user);
             return user.getName() + "님 \n삭제 되었습니다.";
         }
+    }
+
+    public User updateUser(User newUser , User oldUser){
+        oldUser.changePhoneNumber(newUser.getPhoneNumber());
+        oldUser.changeNickName(newUser.getNickName());
+        oldUser.changeAddress(newUser.getAddress());
+        oldUser.changePassword(newUser.getPassword());
+
+        memberRepository.save(oldUser);
+
+        return oldUser;
     }
 
 }
