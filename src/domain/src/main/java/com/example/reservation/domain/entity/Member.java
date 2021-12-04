@@ -79,5 +79,4 @@ public abstract class Member {
     public void changePhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 }

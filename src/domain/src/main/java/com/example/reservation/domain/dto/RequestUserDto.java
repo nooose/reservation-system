@@ -7,10 +7,12 @@ import com.example.reservation.domain.type.MemberRoleType;
 import lombok.Data;
 
 @Data
-public class UserDto {
+public class RequestUserDto {
     private String email;
     private String password;
     private String nickName;
+
+    @NotEmpty
     private String name;
     private String phoneNumber;
     private Address address;
@@ -20,7 +22,7 @@ public class UserDto {
         return createUser(this.email, this.password, this.nickName, this.name, this.phoneNumber, this.address);
     }
 
-    public User createUser(String email, String password, String nickName, String name, String phoneNumber, Address address) {
+    private User createUser(String email, String password, String nickName, String name, String phoneNumber, Address address) {
         return User.builder()
                 .email(email).password(password)
                 .nickName(nickName).name(name)
