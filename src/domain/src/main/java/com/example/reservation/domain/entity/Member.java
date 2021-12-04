@@ -52,18 +52,6 @@ public abstract class Member {
     private LocalDateTime lastLogin;
 
 
-    public boolean isNullId() {
-        return this.getId() == null;
-    }
-
-    public String getSaveStatus() {
-        if (this.isNullId()) {
-            return "실패";
-        } else {
-            return "성공";
-        }
-    }
-
     public void changePassword(String password) {
         this.password = password;
     }
@@ -79,4 +67,6 @@ public abstract class Member {
     public void changePhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+
 }

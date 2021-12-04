@@ -11,8 +11,6 @@ public class RequestUserDto {
     private String email;
     private String password;
     private String nickName;
-
-    @NotEmpty
     private String name;
     private String phoneNumber;
     private Address address;

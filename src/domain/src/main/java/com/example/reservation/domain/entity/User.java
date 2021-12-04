@@ -47,4 +47,6 @@ public class User extends Member{
                 + "User.role = " + this.getMemberRole() + "\n"
                 + "User.point = " + this.getPoint() + "\n";
     }
+
+
 }

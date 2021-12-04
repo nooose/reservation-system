@@ -1,9 +1,10 @@
 package com.example.reservation.domain.entity;
 
-import lombok.AllArgsConstructor;
+import com.example.reservation.domain.dto.ItemDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -26,6 +27,7 @@ public class Item {
 
     private String contents;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
@@ -33,22 +35,31 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<Order> orders = new ArrayList<>();
 
-    @ElementCollection
-    @CollectionTable(name = "time", joinColumns = @JoinColumn(name = "item_id"))
-    private List<LocalDateTime> timeList = new ArrayList<>();
+
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     @CreatedDate
     private LocalDateTime createAt;
 
+    public ItemDto toDto() {
+        ItemDto itemDto = new ItemDto();
+        itemDto.setTitle(this.title);
+        itemDto.setContents(this.contents);
+
+        return itemDto;
+    }
 
     @Builder
-    public Item(Long id, String title, String contents, Company company, List<Order> orders, List<LocalDateTime> timeList, LocalDateTime createAt) {
+    public Item(Long id, String title, String contents, Company company, List<Order> orders, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime createAt) {
         this.id = id;
         this.title = title;
         this.contents = contents;
         this.company = company;
         this.orders = orders;
-        this.timeList = timeList;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.createAt = createAt;
     }
+
 }

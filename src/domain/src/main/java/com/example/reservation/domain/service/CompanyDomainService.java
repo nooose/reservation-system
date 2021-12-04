@@ -1,8 +1,8 @@
 package com.example.reservation.domain.service;
 
-import com.example.reservation.domain.entity.Item;
+import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.entity.Member;
-import com.example.reservation.domain.entity.User;
+import com.example.reservation.repository.ItemRepository;
 import com.example.reservation.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,21 +14,23 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class UserDomainServiceImpl implements MemberDomainService{
+public class CompanyDomainService implements MemberDomainService{
 
     private final MemberRepository memberRepository;
+    private final ItemRepository itemRepository;
 
     @Override
     public void saveMember(Member member) {
-        memberRepository.save(member);
-        log.info("{} 회원 저장", member.getEmail());
+        Company company = (Company) member;
+        memberRepository.save(company);
+        log.info("{} 업체 저장", company.getCompanyName());
     }
 
     @Override
     public Member getMember(Long id) {
         Optional<Member> byId = memberRepository.findById(id);
         Member member = byId.orElseThrow(() -> new IllegalStateException("특정 회원이 없습니다."));
-        return (User) member;
+        return (Company) member;
     }
 
     @Override
@@ -38,22 +40,20 @@ public class UserDomainServiceImpl implements MemberDomainService{
 
     @Override
     public void updateMember(Long id, Member member) {
-        User findMember = (User) getMember(id);
+        Company company = (Company) member;
+        Company findMember = (Company) getMember(id);
 
         findMember.changeNickName(member.getNickName());
         findMember.changePassword(member.getPassword());
         findMember.changeAddress(member.getAddress());
         findMember.changePhoneNumber(member.getPhoneNumber());
+        findMember.changeCompanyName(company.getCompanyName());
     }
 
     @Override
     public void deleteMember(Long id) {
         Member member = getMember(id);
         memberRepository.delete(member);
-    }
-
-    public void order(Item item) {
-
     }
 
 }
