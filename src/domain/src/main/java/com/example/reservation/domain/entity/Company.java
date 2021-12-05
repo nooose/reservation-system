@@ -25,7 +25,7 @@ public class Company extends Member{
     private String description;
     private String companyName;
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private List<Item> items = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
@@ -50,24 +50,13 @@ public class Company extends Member{
         ResponseCompanyDto responseCompanyDto = new ResponseCompanyDto();
         responseCompanyDto.setCompanyName(this.getCompanyName());
         responseCompanyDto.setName(this.getName());
+
         List<ItemDto> collect = this.getItems().stream()
                 .map(Item::toDto)
                 .collect(Collectors.toList());
         responseCompanyDto.setItems(collect);
 
         return responseCompanyDto;
-    }
-
-    public void addItem(Item item) {
-        this.items.add(item);
-    }
-
-    public void addItems(List<Item> items) {
-        this.items.addAll(items);
-    }
-
-    public void removeItem(Item item) {
-        this.items.remove(item);
     }
 
     public void changeCompanyName(String companyName) {

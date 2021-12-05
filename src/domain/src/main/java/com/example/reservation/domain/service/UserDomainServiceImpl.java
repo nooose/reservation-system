@@ -1,6 +1,5 @@
 package com.example.reservation.domain.service;
 
-import com.example.reservation.domain.entity.Item;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.User;
 import com.example.reservation.repository.MemberRepository;
@@ -27,8 +26,7 @@ public class UserDomainServiceImpl implements MemberDomainService{
     @Override
     public Member getMember(Long id) {
         Optional<Member> byId = memberRepository.findById(id);
-        Member member = byId.orElseThrow(() -> new IllegalStateException("특정 회원이 없습니다."));
-        return (User) member;
+        return byId.orElseThrow(() -> new IllegalStateException("특정 회원이 없습니다."));
     }
 
     @Override
@@ -50,10 +48,6 @@ public class UserDomainServiceImpl implements MemberDomainService{
     public void deleteMember(Long id) {
         Member member = getMember(id);
         memberRepository.delete(member);
-    }
-
-    public void order(Item item) {
-
     }
 
 }

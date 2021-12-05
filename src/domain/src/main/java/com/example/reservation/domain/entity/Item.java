@@ -28,11 +28,11 @@ public class Item {
     private String contents;
 
     @Setter
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
     private List<Order> orders = new ArrayList<>();
 
 

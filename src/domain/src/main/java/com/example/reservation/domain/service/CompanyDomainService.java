@@ -29,8 +29,9 @@ public class CompanyDomainService implements MemberDomainService{
     @Override
     public Member getMember(Long id) {
         Optional<Member> byId = memberRepository.findById(id);
-        Member member = byId.orElseThrow(() -> new IllegalStateException("특정 회원이 없습니다."));
-        return (Company) member;
+        Company company = (Company) byId.orElseThrow(() -> new IllegalStateException("특정 회원이 없습니다."));
+        log.info("{} 업체 조회", company.getCompanyName());
+        return company;
     }
 
     @Override

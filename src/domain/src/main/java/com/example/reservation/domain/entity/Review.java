@@ -23,7 +23,7 @@ public class Review{
 
     private String contents;
 
-    @OneToOne(mappedBy = "review")
+    @OneToOne(mappedBy = "review", fetch = FetchType.LAZY)
     private Order order;
 
     @Enumerated(EnumType.STRING)

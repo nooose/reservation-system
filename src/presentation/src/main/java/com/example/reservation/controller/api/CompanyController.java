@@ -49,6 +49,7 @@ public class CompanyController {
     @GetMapping("/{companyId}")
     public ResponseDto<ResponseCompanyDto> getCompany(@PathVariable Long companyId) {
         Company findCompany = (Company) companyService.getMember(companyId);
+        log.info("{} 업체 조회", findCompany.getCompanyName());
 
         return new ResponseDto<>(findCompany.toResponseDto());
     }
