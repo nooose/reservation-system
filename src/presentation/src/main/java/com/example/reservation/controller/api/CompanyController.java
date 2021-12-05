@@ -3,6 +3,7 @@ package com.example.reservation.controller.api;
 import com.example.reservation.domain.dto.ItemDto;
 import com.example.reservation.domain.dto.RequestCompanyDto;
 import com.example.reservation.domain.dto.ResponseCompanyDto;
+import com.example.reservation.domain.dto.ResponseDto;
 import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.service.Impl.CompanyServiceImpl;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +29,7 @@ public class CompanyController {
      * @return
      */
     @PostMapping
-    public ResponseCompanyDto saveCompany(@RequestBody RequestCompanyDto requestCompanyDto) {
+    public ResponseDto<ResponseCompanyDto> saveCompany(@RequestBody RequestCompanyDto requestCompanyDto) {
         Company company = requestCompanyDto.toEntity();
         log.info("DTO 출력 : {}", requestCompanyDto);
         log.info("업체 DTO 변환이름 : {}", company.getCompanyName());
@@ -36,7 +38,7 @@ public class CompanyController {
 
 
         Company findCompany = (Company) companyService.getMember(company.getId());
-        return findCompany.toResponseDto();
+        return new ResponseDto<>(findCompany.toResponseDto());
     }
 
     /**
@@ -45,10 +47,10 @@ public class CompanyController {
      * @return
      */
     @GetMapping("/{companyId}")
-    public ResponseCompanyDto getCompany(@PathVariable Long companyId) {
+    public ResponseDto<ResponseCompanyDto> getCompany(@PathVariable Long companyId) {
         Company findCompany = (Company) companyService.getMember(companyId);
 
-        return findCompany.toResponseDto();
+        return new ResponseDto<>(findCompany.toResponseDto());
     }
 
     /**
@@ -56,13 +58,14 @@ public class CompanyController {
      * @return
      */
     @GetMapping("/companies")
-    public List<ResponseCompanyDto> getCompanies() {
+    public ResponseDto<List<ResponseCompanyDto>> getCompanies() {
         List<Member> members = companyService.getMembers();
 
-        return members.stream()
+        List<ResponseCompanyDto> collect = members.stream()
                 .map(m -> (Company) m)
                 .map(Company::toResponseDto)
                 .collect(Collectors.toList());
+        return new ResponseDto<>(collect.size(), collect);
     }
 
     /**
@@ -72,12 +75,12 @@ public class CompanyController {
      * @return
      */
     @PutMapping("/{companyId}")
-    public ResponseCompanyDto updateCompany(@PathVariable Long companyId,
-                                            @RequestBody RequestCompanyDto requestCompanyDto) {
+    public ResponseDto<ResponseCompanyDto> updateCompany(@PathVariable Long companyId,
+                                                         @RequestBody @Valid RequestCompanyDto requestCompanyDto) {
         companyService.update(companyId, requestCompanyDto.toEntity());
 
         Company company = (Company) companyService.getMember(companyId);
-        return company.toResponseDto();
+        return new ResponseDto<>(company.toResponseDto());
     }
 
     /**
@@ -99,11 +102,12 @@ public class CompanyController {
      * @return
      */
     @PostMapping("/{companyId}")
-    public ResponseCompanyDto createItem(@PathVariable Long companyId, @RequestBody ItemDto itemDto) {
+    public ResponseDto<ResponseCompanyDto> createItem(@PathVariable Long companyId,
+                                                      @RequestBody @Valid ItemDto itemDto) {
         companyService.createItem(companyId, itemDto.toEntity());
         Company company = (Company) companyService.getMember(companyId);
 
-        return company.toResponseDto();
+        return new ResponseDto<>(company.toResponseDto());
     }
 
     /**
@@ -113,11 +117,12 @@ public class CompanyController {
      * @return
      */
     @DeleteMapping("/{companyId}/{itemId}")
-    public ResponseCompanyDto createItem(@PathVariable Long companyId, @PathVariable Long itemId) {
+    public ResponseDto<ResponseCompanyDto> createItem(@PathVariable Long companyId,
+                                                      @PathVariable Long itemId) {
         companyService.removeItem(companyId, itemId);
         Company company = (Company) companyService.getMember(companyId);
 
-        return company.toResponseDto();
+        return new ResponseDto<>(company.toResponseDto());
     }
 
 

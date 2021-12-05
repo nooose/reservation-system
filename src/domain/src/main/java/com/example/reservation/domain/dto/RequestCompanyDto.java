@@ -4,20 +4,35 @@ import com.example.reservation.domain.Address;
 import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.type.CompanyCategoryType;
 import com.example.reservation.domain.type.MemberRoleType;
+import com.sun.istack.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class RequestCompanyDto {
+    @Email
+    @NotBlank
     private String email;
+    @NotBlank
     private String password;
+    @NotBlank
     private String nickName;
+    @NotBlank
     private String name;
+    @NotBlank
     private String phoneNumber;
+    @NotNull
     private Address address;
 
+    @NotBlank
     private String registrationNumber;
+    @NotBlank
     private String description;
+    @NotBlank
     private String companyName;
+    @NotBlank
     private CompanyCategoryType companyCategoryType;
 
     public Company toEntity() {

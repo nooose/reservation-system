@@ -4,15 +4,26 @@ package com.example.reservation.domain.dto;
 import com.example.reservation.domain.Address;
 import com.example.reservation.domain.entity.User;
 import com.example.reservation.domain.type.MemberRoleType;
+import com.sun.istack.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class RequestUserDto {
+    @Email
+    @NotBlank
     private String email;
+    @NotBlank
     private String password;
+    @NotBlank
     private String nickName;
+    @NotBlank
     private String name;
+    @NotBlank
     private String phoneNumber;
+    @NotNull
     private Address address;
 
 

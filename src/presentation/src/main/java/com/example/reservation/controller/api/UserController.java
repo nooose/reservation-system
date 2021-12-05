@@ -1,6 +1,7 @@
 package com.example.reservation.controller.api;
 
 import com.example.reservation.domain.dto.RequestUserDto;
+import com.example.reservation.domain.dto.ResponseDto;
 import com.example.reservation.domain.dto.ResponseUserDto;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.User;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,10 +28,10 @@ public class UserController {
      * @return
      */
     @GetMapping("/{userId}")
-    public ResponseUserDto getMember(@PathVariable Long userId) {
+    public ResponseDto<ResponseUserDto> getMember(@PathVariable Long userId) {
         User user = (User) userService.getMember(userId);
 
-        return user.toResponseDto();
+        return new ResponseDto<>(user.toResponseDto());
     }
 
     /**
@@ -37,13 +39,14 @@ public class UserController {
      * @return
      */
     @GetMapping("/users")
-    public List<ResponseUserDto> getMembers() {
+    public ResponseDto<List<ResponseUserDto>> getMembers() {
         List<Member> members = userService.getMembers();
 
-        return members.stream()
+        List<ResponseUserDto> collect = members.stream()
                 .map(m -> (User) m)
                 .map(User::toResponseDto)
                 .collect(Collectors.toList());
+        return new ResponseDto<>(collect.size(), collect);
     }
 
     /**
@@ -53,11 +56,12 @@ public class UserController {
      * @return
      */
     @PutMapping("/{userId}")
-    public ResponseUserDto updateUser(@PathVariable Long userId, @RequestBody RequestUserDto requestUserDto) {
+    public ResponseDto<ResponseUserDto> updateUser(@PathVariable Long userId,
+                                                   @RequestBody @Valid RequestUserDto requestUserDto) {
         userService.update(userId, requestUserDto.toEntity());
 
         User findUser = (User) userService.getMember(userId);
-        return findUser.toResponseDto();
+        return new ResponseDto<>(findUser.toResponseDto());
     }
 
     /**
@@ -66,12 +70,12 @@ public class UserController {
      * @return
      */
     @PostMapping
-    public ResponseUserDto saveUser(@RequestBody RequestUserDto requestUserDto) {
+    public ResponseDto<ResponseUserDto> saveUser(@RequestBody @Valid RequestUserDto requestUserDto) {
         User user = requestUserDto.toEntity();
         userService.join(user);
 
         User findUser = (User) userService.getMember(user.getId());
-        return findUser.toResponseDto();
+        return new ResponseDto<>(findUser.toResponseDto());
     }
 
     /**
