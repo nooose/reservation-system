@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/api/users")
 @RestController
-public class UserController {
+public class UserApiController {
 
     private final UserServiceImpl userService;
 
@@ -38,7 +38,7 @@ public class UserController {
      * 모든 회원 조회
      * @return
      */
-    @GetMapping("/users")
+    @GetMapping
     public ResponseDto<List<ResponseUserDto>> getMembers() {
         List<Member> members = userService.getMembers();
 
@@ -69,7 +69,7 @@ public class UserController {
      * @param requestUserDto
      * @return
      */
-    @PostMapping
+    @PostMapping("/new")
     public ResponseDto<ResponseUserDto> saveUser(@RequestBody @Valid RequestUserDto requestUserDto) {
         User user = requestUserDto.toEntity();
         userService.join(user);

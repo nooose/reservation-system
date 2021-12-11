@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 @RestController
-public class AdminController {
+public class AdminApiController {
 
     private final AdminServiceImpl adminService;
 

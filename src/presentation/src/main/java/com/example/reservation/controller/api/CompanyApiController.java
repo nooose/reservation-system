@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/company")
+@RequestMapping("/api/companies")
 @RestController
-public class CompanyController {
+public class CompanyApiController {
 
     private final CompanyServiceImpl companyService;
 
@@ -28,7 +28,7 @@ public class CompanyController {
      * @param requestCompanyDto
      * @return
      */
-    @PostMapping
+    @PostMapping("/new")
     public ResponseDto<ResponseCompanyDto> saveCompany(@RequestBody RequestCompanyDto requestCompanyDto) {
         Company company = requestCompanyDto.toEntity();
         log.info("DTO 출력 : {}", requestCompanyDto);
@@ -58,7 +58,7 @@ public class CompanyController {
      * 모든 업체 조회
      * @return
      */
-    @GetMapping("/companies")
+    @GetMapping
     public ResponseDto<List<ResponseCompanyDto>> getCompanies() {
         List<Member> members = companyService.getMembers();
 
