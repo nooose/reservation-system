@@ -2,6 +2,7 @@ package com.example.reservation.domain.service;
 
 import com.example.reservation.domain.entity.Admin;
 import com.example.reservation.domain.entity.Member;
+import com.example.reservation.domain.type.MemberRoleType;
 import com.example.reservation.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,13 +29,12 @@ public class AdminDomainService implements MemberDomainService{
     @Override
     public Member getMember(Long id) {
         Optional<Member> byId = memberRepository.findById(id);
-        Member member = byId.orElseThrow(()-> new IllegalArgumentException("특정 회원이 없습니다."));
-        return member;
+        return byId.orElseThrow(()-> new IllegalArgumentException("특정 회원이 없습니다."));
     }
 
     @Override
     public List<Member> getMembers() {
-        return memberRepository.findAll();
+        return memberRepository.findAllByMemberRole(MemberRoleType.ADMIN);
     }
 
     @Override

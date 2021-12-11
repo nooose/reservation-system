@@ -2,6 +2,7 @@ package com.example.reservation.domain.service;
 
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.User;
+import com.example.reservation.domain.type.MemberRoleType;
 import com.example.reservation.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,7 @@ public class UserDomainServiceImpl implements MemberDomainService{
 
     @Override
     public List<Member> getMembers() {
-        return memberRepository.findAll();
+        return memberRepository.findAllByMemberRole(MemberRoleType.BASIC);
     }
 
     @Override
