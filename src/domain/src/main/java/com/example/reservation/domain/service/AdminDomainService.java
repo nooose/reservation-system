@@ -50,6 +50,7 @@ public class AdminDomainService implements MemberDomainService{
 
     @Override
     public void deleteMember(Long id) {
-        memberRepository.deleteById(id);
+        Member member = getMember(id);
+        memberRepository.delete(member);
     }
 }
