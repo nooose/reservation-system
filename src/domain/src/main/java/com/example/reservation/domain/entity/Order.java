@@ -1,9 +1,10 @@
 package com.example.reservation.domain.entity;
 
+import com.example.reservation.domain.dto.OrderDto;
 import com.example.reservation.domain.type.OrderStatusType;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -13,9 +14,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ORDER_TABLE")
-@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Getter
+@Builder
 public class Order {
 
     @Id
@@ -23,23 +24,28 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
+    @Setter
     private int price;
 
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
 
+    @Setter
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id")
     private Review review;
 
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="item_id")
     private Item item;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     private OrderStatusType orderStatus;
 
@@ -47,7 +53,9 @@ public class Order {
     private LocalDateTime createdAt;
 
 
+    @Setter
     private LocalDateTime startTime;
+    @Setter
     private LocalDateTime endTime;
 
     @Builder
@@ -61,5 +69,15 @@ public class Order {
         this.createdAt = createdAt;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public Order() {
+    }
+
+    public OrderDto toResponseDto() {
+        return new OrderDto(
+                this.item.getTitle(),
+                this.orderStatus,
+                this.startTime, this.endTime);
     }
 }
