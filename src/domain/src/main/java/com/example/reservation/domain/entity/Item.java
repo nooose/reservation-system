@@ -27,6 +27,8 @@ public class Item {
 
     private String contents;
 
+    private int price;
+
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
@@ -51,10 +53,11 @@ public class Item {
     }
 
     @Builder
-    public Item(Long id, String title, String contents, Company company, List<Order> orders, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime createAt) {
+    public Item(Long id, String title, String contents, int price, Company company, List<Order> orders, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime createAt) {
         this.id = id;
         this.title = title;
         this.contents = contents;
+        this.price = price;
         this.company = company;
         this.orders = orders;
         this.startTime = startTime;
