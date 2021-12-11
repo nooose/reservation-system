@@ -62,4 +62,8 @@ public class OrderServiceImpl implements OrderService {
         User findUser = userService.getMember(userId).toUserObject();
         return findUser.getOrders();
     }
+
+    public Order getOrderById(Long orderId) {
+        return orderDomainService.findById(orderId);
+    }
 }
