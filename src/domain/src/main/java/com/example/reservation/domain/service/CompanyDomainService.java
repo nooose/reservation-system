@@ -2,6 +2,7 @@ package com.example.reservation.domain.service;
 
 import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.entity.Member;
+import com.example.reservation.domain.type.MemberRoleType;
 import com.example.reservation.repository.ItemRepository;
 import com.example.reservation.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class CompanyDomainService implements MemberDomainService{
 
     @Override
     public List<Member> getMembers() {
-        return memberRepository.findAll();
+        return memberRepository.findAllByMemberRole(MemberRoleType.COMPANY);
     }
 
     @Override
