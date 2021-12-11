@@ -68,5 +68,8 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
     }
 
+    public User toUserObject() {
+        return (User) this;
+    }
 
 }
