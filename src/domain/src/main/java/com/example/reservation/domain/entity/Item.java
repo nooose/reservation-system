@@ -38,6 +38,10 @@ public class Item {
     private List<Order> orders = new ArrayList<>();
 
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<Review> reviews = new ArrayList<>();
+
+
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
