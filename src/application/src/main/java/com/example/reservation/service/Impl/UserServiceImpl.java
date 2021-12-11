@@ -29,12 +29,15 @@ public class UserServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Member getMember(Long id) {
         return userDomainServiceImpl.getMember(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Member> getMembers() {
+
         return userDomainServiceImpl.getMembers();
     }
 

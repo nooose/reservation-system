@@ -33,11 +33,13 @@ public class CompanyServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Member getMember(Long id) {
         return companyDomainService.getMember(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Member> getMembers() {
         return companyDomainService.getMembers();
     }
