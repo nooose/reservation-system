@@ -2,7 +2,7 @@ package com.example.reservation.domain.entity;
 
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.dto.ResponseAdminDto;
+import com.example.reservation.domain.dto.api.ResponseAdminDto;
 import com.example.reservation.domain.type.AdminGradeType;
 import com.example.reservation.domain.type.MemberRoleType;
 import lombok.Builder;

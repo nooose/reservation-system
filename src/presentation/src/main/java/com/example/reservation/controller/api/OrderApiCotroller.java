@@ -1,7 +1,7 @@
 package com.example.reservation.controller.api;
 
 
-import com.example.reservation.domain.dto.*;
+import com.example.reservation.domain.dto.api.*;
 import com.example.reservation.domain.entity.Order;
 import com.example.reservation.service.Impl.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +28,8 @@ public class OrderApiCotroller {
      */
     @PostMapping("/{userId}/{itemId}")
     public ResponseOrderDto<ResponseUserDto, ItemDto, OrderDto> createOrder(@PathVariable Long userId,
-                                                         @PathVariable Long itemId,
-                                                         @RequestBody ReqeustOrderDto reqeustOrderDto) {
+                                                                            @PathVariable Long itemId,
+                                                                            @RequestBody ReqeustOrderDto reqeustOrderDto) {
 
         Order order = orderService.createOrder(userId, itemId, reqeustOrderDto);
 

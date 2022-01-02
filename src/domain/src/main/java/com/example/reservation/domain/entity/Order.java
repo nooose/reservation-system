@@ -1,6 +1,6 @@
 package com.example.reservation.domain.entity;
 
-import com.example.reservation.domain.dto.OrderDto;
+import com.example.reservation.domain.dto.api.OrderDto;
 import com.example.reservation.domain.type.OrderStatusType;
 import lombok.Builder;
 import lombok.Getter;

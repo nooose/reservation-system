@@ -1,7 +1,7 @@
 package com.example.reservation.controller.api;
 
-import com.example.reservation.domain.dto.RequestAdminDto;
-import com.example.reservation.domain.dto.ResponseAdminDto;
+import com.example.reservation.domain.dto.api.RequestAdminDto;
+import com.example.reservation.domain.dto.api.ResponseAdminDto;
 import com.example.reservation.domain.entity.Admin;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.service.Impl.AdminServiceImpl;
