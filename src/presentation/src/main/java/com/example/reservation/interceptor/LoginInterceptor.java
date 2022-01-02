@@ -22,12 +22,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 
-
         Member loginMember = (Member) session.getAttribute("loginMember");
-
         log.info("현재 사용자={}", loginMember.getName());
-
-
         return true;
     }
 
