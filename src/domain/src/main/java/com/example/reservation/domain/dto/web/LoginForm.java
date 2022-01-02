@@ -1,4 +1,4 @@
-package com.example.reservation.dto;
+package com.example.reservation.domain.dto.web;
 
 import lombok.Data;
 
