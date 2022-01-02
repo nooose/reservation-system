@@ -1,7 +1,7 @@
 package com.example.reservation.controller.api;
 
 
-import com.example.reservation.domain.dto.api.ReviewDto;
+import com.example.reservation.domain.dto.ReviewDto;
 import com.example.reservation.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,8 +1,9 @@
 package com.example.reservation.domain.service.login;
 
-import com.example.reservation.domain.dto.api.ResponseUserDto;
+import com.example.reservation.domain.dto.ResponseUserDto;
 import com.example.reservation.domain.dto.web.LoginForm;
 import com.example.reservation.domain.entity.Member;
+import com.example.reservation.domain.vo.SessionConst;
 import com.example.reservation.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,7 @@ public class LoginDomainService {
 
         //로그인 성공
         HttpSession session = request.getSession(true);
-        session.setAttribute("loginMember", loginMember);
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
         return loginMember.toUserObject().toResponseDto();
     }

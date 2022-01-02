@@ -1,6 +1,6 @@
 package com.example.reservation.service;
 
-import com.example.reservation.domain.dto.api.ReqeustOrderDto;
+import com.example.reservation.domain.dto.ReqeustOrderDto;
 import com.example.reservation.domain.entity.Order;
 
 

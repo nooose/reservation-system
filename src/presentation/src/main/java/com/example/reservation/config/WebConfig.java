@@ -1,7 +1,7 @@
 package com.example.reservation.config;
 
 import com.example.reservation.interceptor.LogInterceptor;
-import com.example.reservation.interceptor.LoginInterceptor;
+import com.example.reservation.interceptor.LoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -18,12 +18,12 @@ public class WebConfig implements WebMvcConfigurer {
                         "/jquery/**", "/js/**",
                         "/error");
 
-        registry.addInterceptor(new LoginInterceptor())
+        registry.addInterceptor(new LoginCheckInterceptor())
                 .order(2)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/bootstrap/**", "/css/**", "/images/**", "/fonts/**", "/*.ico",
                         "/jquery/**", "/js/**",
-                        "/error", "/login", "/logout");
+                        "/error", "/", "/members/add", "/login", "/logout");
     }
 
 

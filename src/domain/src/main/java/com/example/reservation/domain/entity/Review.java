@@ -1,6 +1,6 @@
 package com.example.reservation.domain.entity;
 
-import com.example.reservation.domain.dto.api.ReviewDto;
+import com.example.reservation.domain.dto.ReviewDto;
 import com.example.reservation.domain.type.ReviewRatingType;
 import lombok.Builder;
 import lombok.Getter;

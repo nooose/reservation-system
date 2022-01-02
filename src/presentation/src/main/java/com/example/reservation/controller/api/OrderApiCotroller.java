@@ -1,7 +1,7 @@
 package com.example.reservation.controller.api;
 
 
-import com.example.reservation.domain.dto.api.*;
+import com.example.reservation.domain.dto.*;
 import com.example.reservation.domain.entity.Order;
 import com.example.reservation.service.Impl.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
 package com.example.reservation.controller.api;
 
-import com.example.reservation.domain.dto.api.RequestUserDto;
-import com.example.reservation.domain.dto.api.ResponseDto;
-import com.example.reservation.domain.dto.api.ResponseUserDto;
+import com.example.reservation.domain.dto.RequestUserDto;
+import com.example.reservation.domain.dto.ResponseDto;
+import com.example.reservation.domain.dto.ResponseUserDto;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.User;
 import com.example.reservation.service.Impl.UserServiceImpl;

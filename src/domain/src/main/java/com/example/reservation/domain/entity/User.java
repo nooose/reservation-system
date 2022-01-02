@@ -1,7 +1,7 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.dto.api.ResponseUserDto;
+import com.example.reservation.domain.dto.ResponseUserDto;
 import com.example.reservation.domain.type.MemberRoleType;
 import lombok.*;
 

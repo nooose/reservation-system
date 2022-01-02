@@ -1,8 +1,8 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.dto.api.ItemDto;
-import com.example.reservation.domain.dto.api.ResponseCompanyDto;
+import com.example.reservation.domain.dto.ItemDto;
+import com.example.reservation.domain.dto.ResponseCompanyDto;
 import com.example.reservation.domain.type.CompanyCategoryType;
 import com.example.reservation.domain.type.MemberRoleType;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.example.reservation.domain.dto.api;
+package com.example.reservation.domain.dto;
 
 
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.reservation.domain.entity;
 
-import com.example.reservation.domain.dto.api.ItemDto;
+import com.example.reservation.domain.dto.ItemDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

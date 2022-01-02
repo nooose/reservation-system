@@ -1,6 +1,6 @@
 package com.example.reservation.service.Impl;
 
-import com.example.reservation.domain.dto.api.ReviewDto;
+import com.example.reservation.domain.dto.ReviewDto;
 import com.example.reservation.domain.entity.Order;
 import com.example.reservation.domain.entity.Review;
 import com.example.reservation.domain.service.ReviewDomainService;
