@@ -2,11 +2,10 @@ package com.example.reservation.service;
 
 
 import com.example.reservation.domain.dto.web.LoginForm;
-
-import javax.servlet.http.HttpServletRequest;
+import com.example.reservation.domain.entity.Member;
 
 public interface LoginService {
 
-    void login(LoginForm loginForm, HttpServletRequest request);
+    Member login(LoginForm loginForm);
     void logout();
 }

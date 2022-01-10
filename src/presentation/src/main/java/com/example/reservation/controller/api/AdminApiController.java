@@ -30,7 +30,7 @@ public class AdminApiController {
         Admin admin = requestAdminDto.toEntity();
         log.info("Admin DTO 출력 : {}", requestAdminDto);
         log.info("admin Entity 변환 출력: {}", admin.getName());
-        adminService.join(admin);
+//        adminService.join(admin);
 
         Admin findAdmin = (Admin) adminService.getMember(admin.getId());
         return findAdmin.toResponseDto();

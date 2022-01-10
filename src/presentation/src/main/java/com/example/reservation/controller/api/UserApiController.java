@@ -72,7 +72,7 @@ public class UserApiController {
     @PostMapping("/new")
     public ResponseDto<ResponseUserDto> saveUser(@RequestBody @Valid RequestUserDto requestUserDto) {
         User user = requestUserDto.toEntity();
-        userService.join(user);
+//        userService.join(user);
 
         User findUser = (User) userService.getMember(user.getId());
         return new ResponseDto<>(findUser.toResponseDto());

@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public abstract class Member {
+public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
@@ -71,5 +71,4 @@ public abstract class Member {
     public User toUserObject() {
         return (User) this;
     }
-
 }

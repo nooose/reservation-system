@@ -36,7 +36,7 @@ public class RequestUserDto {
                 .email(email).password(password)
                 .nickName(nickName).name(name)
                 .phoneNumber(phoneNumber).address(address)
-                .memberRole(MemberRoleType.BASIC).point(0)
+                .memberRole(MemberRoleType.BASIC)
                 .build();
     }
 }

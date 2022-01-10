@@ -34,7 +34,7 @@ public class CompanyApiController {
         log.info("DTO 출력 : {}", requestCompanyDto);
         log.info("업체 DTO 변환이름 : {}", company.getCompanyName());
 
-        companyService.join(company);
+//        companyService.join(company);
 
 
         Company findCompany = (Company) companyService.getMember(company.getId());

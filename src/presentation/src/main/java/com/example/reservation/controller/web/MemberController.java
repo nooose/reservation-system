@@ -1,6 +1,7 @@
 package com.example.reservation.controller.web;
 
-import com.example.reservation.domain.entity.Member;
+import com.example.reservation.domain.dto.web.MemberForm;
+import com.example.reservation.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,17 +17,21 @@ import javax.validation.Valid;
 @RequestMapping("/members")
 public class MemberController {
 
-    @GetMapping("/add")
-    public String addForm() {
+    private final MemberService memberService;
+
+    @GetMapping("/join")
+    public String join(@ModelAttribute("memberForm") MemberForm memberForm) {
         return "members/addMemberForm";
     }
 
-    @PostMapping("/add")
-    public String save(@Valid @ModelAttribute Member member, BindingResult bindingResult) {
+    @PostMapping("/join")
+    public String save(@Valid @ModelAttribute("memberForm") MemberForm memberForm, BindingResult bindingResult) {
+        memberService.join(memberForm);
+
         if (bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }
-//        memberRepository.save(member);
+
         return "redirect:/";
     }
 }

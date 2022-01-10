@@ -1,5 +1,6 @@
 package com.example.reservation.service.Impl;
 
+import com.example.reservation.domain.dto.web.MemberForm;
 import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.entity.Item;
 import com.example.reservation.domain.entity.Member;
@@ -22,8 +23,8 @@ public class CompanyServiceImpl implements MemberService {
     private final ItemDomainService itemDomainService;
 
     @Override
-    public void join(Member member) {
-        companyDomainService.saveMember(member);
+    public void join(MemberForm member) {
+//        companyDomainService.joinMember(member);
     }
 
     @Override

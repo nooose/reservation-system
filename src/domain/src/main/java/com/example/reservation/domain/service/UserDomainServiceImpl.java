@@ -1,11 +1,15 @@
 package com.example.reservation.domain.service;
 
+import com.example.reservation.domain.dto.web.MemberForm;
+import com.example.reservation.domain.dto.web.UserForm;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.entity.User;
 import com.example.reservation.domain.type.MemberRoleType;
+import com.example.reservation.exception.MemberException;
 import com.example.reservation.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,14 +18,32 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Component
+@Primary
 public class UserDomainServiceImpl implements MemberDomainService{
 
     private final MemberRepository memberRepository;
 
     @Override
-    public void saveMember(Member member) {
-        memberRepository.save(member);
-        log.info("{} 회원 저장", member.getEmail());
+    public void join(MemberForm memberForm) {
+        UserForm userForm = new UserForm(memberForm.getEmail(), memberForm.getPassword1(), memberForm.getPassword2(),
+                memberForm.getNickName(), memberForm.getName(), memberForm.getPhoneNumber(), memberForm.getCity(), memberForm.getStreet());
+
+        User user = userForm.toUserEntity();
+
+        memberRepository.save(user);
+        log.info("{} 회원 저장", user.getEmail());
+    }
+
+    @Override
+    public void validateMember(MemberForm memberForm) {
+        if (memberRepository.findByEmail(memberForm.getEmail()).isPresent()) {
+            throw new MemberException("중복된 이메일입니다.");
+        }
+
+        if (!memberForm.getPassword1().equals(memberForm.getPassword2())) {
+            throw new MemberException("비밀번호가 일치하지 않습니다.");
+        }
+
     }
 
     @Override

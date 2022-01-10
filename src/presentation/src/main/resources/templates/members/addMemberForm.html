@@ -20,54 +20,54 @@
                 <div class="text-center">
                     <h3 class="text-primary" th:text="회원가입"> 회원가입</h3>
                 </div>
-                <form action="/members/add" method="post">
+                <form action="/members/join" th:object="${memberForm}" method="post">
                     <div class="p-4">
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-person-plus-fill text-white"></i></span>
-                            <input type="text" id="email" class="form-control" placeholder="이메일">
+                            <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="이메일">
 
                         </div>
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-key-fill text-white"></i></span>
-                            <input type="password" id="password" class="form-control" placeholder="비밀번호">
+                            <input type="password" id="password" th:field="*{password1}"  class="form-control" placeholder="비밀번호">
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-key-fill text-white"></i></span>
-                            <input type="password" id="re-password" class="form-control" placeholder="비밀번호 확인">
+                            <input type="password" id="re-password" th:field="*{password2}"  class="form-control" placeholder="비밀번호 확인">
+                        </div>
+
+                        <div class="input-group mb-3">
+                                    <span class="input-group-text bg-primary">
+                                        <i class="bi bi-emoji-smile text-white"></i></span>
+                            <input type="text" id="nickname" th:field="*{nickName}"  class="form-control" placeholder="닉네임">
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-type text-white"></i></span>
-                            <input type="text" id="nickname" class="form-control" placeholder="닉네임">
-                        </div>
-
-                        <div class="input-group mb-3">
-                                    <span class="input-group-text bg-primary">
-                                        <i class="bi bi-type text-white"></i></span>
-                            <input type="text" id="name" class="form-control" placeholder="이름">
+                            <input type="text" id="name" th:field="*{name}"  class="form-control" placeholder="이름">
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-telephone-plus-fill text-white"></i></span>
-                            <input type="text" id="phoneNumber" class="form-control" placeholder="휴대폰 번호">
+                            <input type="text" id="phoneNumber" th:field="*{phoneNumber}"  class="form-control" placeholder="휴대폰 번호">
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-house-fill text-white"></i></span>
-                            <input type="text" id="city" class="form-control" placeholder="시/구">
+                            <input type="text" id="city" th:field="*{city}"  class="form-control" placeholder="시/구">
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-house-fill text-white"></i></span>
-                            <input type="text" id="street" class="form-control" placeholder="도로명 주소">
+                            <input type="text" id="street" th:field="*{street}"  class="form-control" placeholder="도로명 주소">
                         </div>
 
                         <div class="text-center">

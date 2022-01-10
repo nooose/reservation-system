@@ -1,5 +1,6 @@
 package com.example.reservation.domain.service;
 
+import com.example.reservation.domain.dto.web.MemberForm;
 import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.type.MemberRoleType;
@@ -21,10 +22,15 @@ public class CompanyDomainService implements MemberDomainService{
     private final ItemRepository itemRepository;
 
     @Override
-    public void saveMember(Member member) {
-        Company company = (Company) member;
-        memberRepository.save(company);
-        log.info("{} 업체 저장", company.getCompanyName());
+    public void join(MemberForm member) {
+//        Company company = (Company) member;
+//        memberRepository.save(company);
+//        log.info("{} 업체 저장", company.getCompanyName());
+    }
+
+    @Override
+    public void validateMember(MemberForm memberForm) {
+
     }
 
     @Override

@@ -22,7 +22,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       # create - 시작 시 DB 초기화
       # update - 수정사항 반영
     properties:

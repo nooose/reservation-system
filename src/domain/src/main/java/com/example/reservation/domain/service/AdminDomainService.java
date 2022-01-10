@@ -1,5 +1,6 @@
 package com.example.reservation.domain.service;
 
+import com.example.reservation.domain.dto.web.MemberForm;
 import com.example.reservation.domain.entity.Admin;
 import com.example.reservation.domain.entity.Member;
 import com.example.reservation.domain.type.MemberRoleType;
@@ -20,10 +21,15 @@ public class AdminDomainService implements MemberDomainService{
     private final MemberRepository memberRepository;
 
     @Override
-    public void saveMember(Member member) {
-        Admin admin = (Admin) member;
-        memberRepository.save(admin);
-        log.info("{} 어드민 저장", admin.getName());
+    public void join(MemberForm member) {
+//        Admin admin = (Admin) member;
+//        memberRepository.save(admin);
+//        log.info("{} 어드민 저장", admin.getName());
+    }
+
+    @Override
+    public void validateMember(MemberForm memberForm) {
+
     }
 
     @Override

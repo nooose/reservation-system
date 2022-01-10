@@ -1,12 +1,13 @@
 package com.example.reservation.service;
 
+import com.example.reservation.domain.dto.web.MemberForm;
 import com.example.reservation.domain.entity.Member;
 
 import java.util.List;
 
 public interface MemberService {
 
-    void join(Member member);
+    void join(MemberForm member);
 
     void update(Long id, Member member);
 

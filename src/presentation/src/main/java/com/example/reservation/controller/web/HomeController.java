@@ -18,12 +18,10 @@ public class HomeController {
     public String index(
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
 
-        //세션에 회원 데이터가 없으면 home
         if (loginMember == null) {
             return "home/index";
         }
 
-        //세션이 유지되면 로그인으로 이동
         ResponseUserDto responseUserDto = loginMember.toUserObject().toResponseDto();
         model.addAttribute(SessionConst.LOGIN_MEMBER, responseUserDto);
         return "home/loginHome";
