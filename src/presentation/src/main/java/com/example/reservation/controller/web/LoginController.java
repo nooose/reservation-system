@@ -17,13 +17,12 @@ import javax.validation.Valid;
 
 @Slf4j
 @Controller
-@RequestMapping("/login")
 @RequiredArgsConstructor
 public class LoginController {
 
     private final LoginService loginService;
 
-    @GetMapping
+    @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form,
                             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
 
@@ -34,7 +33,7 @@ public class LoginController {
         return "login/loginForm";
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public String login(@Valid @ModelAttribute("loginForm") LoginForm form,
                         HttpServletRequest request, Model model, BindingResult bindingResult) {
 

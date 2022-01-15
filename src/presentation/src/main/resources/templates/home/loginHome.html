@@ -66,13 +66,18 @@
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                 </ul>
-                    <div class="text-end">
+
+                    <div>
                         <a href="#" class="link-primary me-5" th:text="|${loginMember.name}님, 반갑습니다.|">로그인</a>
-                        <button type="button" class="btn btn-link me-5" th:text="로그아웃">Link</button>
+                    </div>
+                    <div class="text-end">
+                        <form th:action="@{/logout}" method="post">
+                            <button class="btn btn-secondary" onclick="location.href='index.html'" type="submit"> 로그아웃 </button>
+                        </form>
                     </div>
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+<!--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
                 </form>
             </div>
         </div>
