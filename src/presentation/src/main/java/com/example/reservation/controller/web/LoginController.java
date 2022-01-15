@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,11 @@ public class LoginController {
 
     @PostMapping
     public String login(@Valid @ModelAttribute("loginForm") LoginForm form,
-                        HttpServletRequest request, Model model) {
+                        HttpServletRequest request, Model model, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()){
+            return"login/loginForm";
+        }
 
         Member loginMember = loginService.login(form);
 
@@ -43,6 +48,8 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
         model.addAttribute("loginMember", loginMember);
+
+
         return "redirect:/";
     }
 

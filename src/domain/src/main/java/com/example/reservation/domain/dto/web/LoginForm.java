@@ -8,8 +8,9 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class LoginForm {
 
-    @NotBlank @Email
+    @Email(message = "이메일 형식에 맞지 않습니다.")
+    @NotBlank(message = "이메일을 입력하세요.")
     private String email;
-    @NotBlank
+    @NotBlank(message = "패스워드를 입력하세요")
     private String password;
 }
