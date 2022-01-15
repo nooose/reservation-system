@@ -37,6 +37,7 @@ public class UserDomainServiceImpl implements MemberDomainService{
     @Override
     public void validateMember(MemberForm memberForm) {
         if (memberRepository.findByEmail(memberForm.getEmail()).isPresent()) {
+            log.warn("Email={}", memberForm.getEmail());
             throw new MemberException("중복된 이메일입니다.");
         }
 

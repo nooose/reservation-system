@@ -26,11 +26,11 @@ public class MemberController {
 
     @PostMapping("/join")
     public String save(@Valid @ModelAttribute("memberForm") MemberForm memberForm, BindingResult bindingResult) {
-        memberService.join(memberForm);
 
         if (bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }
+        memberService.join(memberForm);
 
         return "redirect:/";
     }
