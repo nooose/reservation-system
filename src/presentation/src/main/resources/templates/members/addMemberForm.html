@@ -25,49 +25,81 @@
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-person-plus-fill text-white"></i></span>
-                            <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="이메일">
+                            <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="이메일"
+                                   th:classappend="${#fields.hasErrors('email')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                                이메일 에러 메시지
+                            </div>
 
                         </div>
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-key-fill text-white"></i></span>
-                            <input type="password" id="password" th:field="*{password1}"  class="form-control" placeholder="비밀번호">
+                            <input type="password" id="password" th:field="*{password1}"  class="form-control" placeholder="비밀번호"
+                                   th:classappend="${#fields.hasErrors('password1')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}">
+                                비밀번호 에러 메시지
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-key-fill text-white"></i></span>
-                            <input type="password" id="re-password" th:field="*{password2}"  class="form-control" placeholder="비밀번호 확인">
+                            <input type="password" id="re-password" th:field="*{password2}"  class="form-control" placeholder="비밀번호 확인"
+                                   th:classappend="${#fields.hasErrors('password2')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">
+                                비밀번호 확인 에러 메시지
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-emoji-smile text-white"></i></span>
-                            <input type="text" id="nickname" th:field="*{nickName}"  class="form-control" placeholder="닉네임">
+                            <input type="text" id="nickname" th:field="*{nickName}"  class="form-control" placeholder="닉네임"
+                                   th:classappend="${#fields.hasErrors('nickName')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">
+                                닉네임 에러 메시지
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-type text-white"></i></span>
-                            <input type="text" id="name" th:field="*{name}"  class="form-control" placeholder="이름">
+                            <input type="text" id="name" th:field="*{name}"  class="form-control" placeholder="이름"
+                                   th:classappend="${#fields.hasErrors('name')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                                이름 에러 메시지
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-telephone-plus-fill text-white"></i></span>
-                            <input type="text" id="phoneNumber" th:field="*{phoneNumber}"  class="form-control" placeholder="휴대폰 번호">
+                            <input type="text" id="phoneNumber" th:field="*{phoneNumber}"  class="form-control" placeholder="휴대폰 번호"
+                                   th:classappend="${#fields.hasErrors('phoneNumber')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
+                                휴대폰 번호 에러 메시지
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-house-fill text-white"></i></span>
-                            <input type="text" id="city" th:field="*{city}"  class="form-control" placeholder="시/구">
+                            <input type="text" id="city" th:field="*{city}"  class="form-control" placeholder="시/구"
+                                   th:classappend="${#fields.hasErrors('city')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">
+                                도시 에러 메시지
+                            </div>
                         </div>
 
                         <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary">
                                         <i class="bi bi-house-fill text-white"></i></span>
-                            <input type="text" id="street" th:field="*{street}"  class="form-control" placeholder="도로명 주소">
+                            <input type="text" id="street" th:field="*{street}"  class="form-control" placeholder="도로명 주소"
+                                   th:classappend="${#fields.hasErrors('street')} ? is-invalid">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">
+                                도로명 에러 메시지
+                            </div>
                         </div>
 
                         <div class="text-center">

@@ -11,28 +11,28 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class MemberForm {
 
-    @Email
-    @NotBlank
+    @Email(message = "이메일 형식에 맞지 않습니다.")
+    @NotBlank(message = "이메일을 입력하세요.")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "패스워드를 입력하세요")
     private String password1;
 
-    @NotBlank
+    @NotBlank(message = "패스워드 확인을 입력하세요")
     private String password2;
 
-    @NotBlank
+    @NotBlank(message = "닉네임을 입력해주세요")
     private String nickName;
 
-    @NotBlank
+    @NotBlank(message = "이름을 입력하세요.")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "핸드폰 번호를 입력하세요.")
     private String phoneNumber;
 
-    @NotBlank
+    @NotBlank(message = "도시를 입력하세요")
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "도로명을 입력하세요.")
     private String street;
 }
