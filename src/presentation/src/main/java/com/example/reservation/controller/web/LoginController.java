@@ -34,8 +34,8 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("loginForm") LoginForm form,
-                        HttpServletRequest request, Model model, BindingResult bindingResult) {
+    public String login(@Valid @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult,
+                        HttpServletRequest request, Model model) {
 
         if(bindingResult.hasErrors()){
             return"login/loginForm";
