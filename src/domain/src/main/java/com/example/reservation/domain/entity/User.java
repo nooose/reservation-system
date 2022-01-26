@@ -54,4 +54,7 @@ public class User extends Member{
     }
 
 
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
 }

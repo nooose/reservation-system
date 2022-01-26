@@ -1,4 +1,4 @@
-package com.example.reservation.service.Impl;
+package com.example.reservation.service.impl;
 
 import com.example.reservation.domain.dto.web.MemberForm;
 import com.example.reservation.domain.entity.Member;

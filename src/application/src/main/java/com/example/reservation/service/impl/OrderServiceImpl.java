@@ -1,4 +1,4 @@
-package com.example.reservation.service.Impl;
+package com.example.reservation.service.impl;
 
 import com.example.reservation.domain.dto.ReqeustOrderDto;
 import com.example.reservation.domain.entity.Item;
@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Slf4j
@@ -42,13 +44,40 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
+
+    @Override
+    public void createOrder(Long userId, Long itemId) {
+        User user = (User) userService.getMember(userId);
+        Item item = itemDomainService.getItem(itemId);
+
+        Order order = new Order();
+        order.setUser(user);
+        order.setItem(item);
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalTime startTime = item.getStartTime();
+        LocalTime endTime = item.getEndTime();
+
+        LocalDateTime startDateTime = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(),
+                startTime.getHour(), startTime.getMinute(), startTime.getSecond());
+        LocalDateTime endDateTime = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(),
+                endTime.getHour(), endTime.getMinute(), endTime.getSecond());
+        order.setStartTime(startDateTime);
+        order.setEndTime(endDateTime);
+        order.setOrderStatus(OrderStatusType.COMPLETE);
+
+
+        user.addOrder(order);
+        orderDomainService.save(order);
+    }
+
+
     @Override
     @Transactional
     public void cancelOrder(Long orderId) {
         Order order = findOrder(orderId);
         order.setOrderStatus(OrderStatusType.CANCEL);
     }
-
 
 
     @Override

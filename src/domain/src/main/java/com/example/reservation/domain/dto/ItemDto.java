@@ -4,13 +4,14 @@ import com.example.reservation.domain.entity.Item;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 public class ItemDto {
     private String title;
     private String contents;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private LocalDateTime createAt;
 
 
@@ -19,7 +20,7 @@ public class ItemDto {
     }
 
     private Item createItem(String title, String contents,
-                            LocalDateTime startTime, LocalDateTime endTime) {
+                            LocalTime startTime, LocalTime endTime) {
         return Item.builder()
                 .title(title).contents(contents)
                 .startTime(startTime).endTime(endTime)

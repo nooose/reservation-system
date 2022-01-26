@@ -25,7 +25,6 @@ public class CompanyDomainService implements MemberDomainService{
     public void join(MemberForm member) {
 //        Company company = (Company) member;
 //        memberRepository.save(company);
-//        log.info("{} 업체 저장", company.getCompanyName());
     }
 
     @Override

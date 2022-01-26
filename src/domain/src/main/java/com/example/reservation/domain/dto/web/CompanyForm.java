@@ -2,7 +2,7 @@ package com.example.reservation.domain.dto.web;
 
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.entity.User;
+import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.type.MemberRoleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,18 +13,18 @@ public class CompanyForm {
     private String email;
     private String password1;
     private String password2;
-    private String nickName;
+    private String companyName;
     private String name;
     private String phoneNumber;
     private String city;
     private String street;
 
-    public User toEntity() {
-        return User.builder()
+    public Company toEntity() {
+        return Company.builder()
                 .email(email).password(password1)
-                .nickName(nickName).name(name)
+                .companyName(companyName).name(name)
                 .phoneNumber(phoneNumber).address(new Address(city, street))
-                .memberRole(MemberRoleType.BASIC)
+                .memberRole(MemberRoleType.COMPANY)
                 .build();
     }
 }

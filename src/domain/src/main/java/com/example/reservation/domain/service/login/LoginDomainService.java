@@ -18,9 +18,11 @@ public class LoginDomainService {
 
     public Optional<Member> login(LoginForm loginForm) {
 
-        return memberRepository.findByEmail(loginForm.getEmail()).stream()
-                .filter(m -> m.getPassword().equals(loginForm.getPassword()))
-                .findFirst();
+        return memberRepository.findByEmail(loginForm.getEmail())
+                                    .stream()
+                                    .filter(m -> m.getPassword()
+                                                    .equals(loginForm.getPassword()))
+                                    .findFirst();
     }
 
 }

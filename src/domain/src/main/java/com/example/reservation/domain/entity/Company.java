@@ -21,6 +21,10 @@ import java.util.stream.Collectors;
 @Getter
 public class Company extends Member{
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "company_id")
+    private Long id;
+
     private String registrationNumber;
     private String description;
     private String companyName;
@@ -40,6 +44,7 @@ public class Company extends Member{
                    String companyName, CompanyCategoryType companyCategory) {
 
         super(id, email, password, nickName, name, phoneNumber, address, memberRole, boards, createdAt, lastLogin);
+        this.id = id;
         this.registrationNumber = registrationNumber;
         this.description = description;
         this.companyName = companyName;
@@ -61,5 +66,9 @@ public class Company extends Member{
 
     public void changeCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
     }
 }

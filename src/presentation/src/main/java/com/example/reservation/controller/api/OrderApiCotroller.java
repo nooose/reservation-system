@@ -3,7 +3,7 @@ package com.example.reservation.controller.api;
 
 import com.example.reservation.domain.dto.*;
 import com.example.reservation.domain.entity.Order;
-import com.example.reservation.service.Impl.OrderServiceImpl;
+import com.example.reservation.service.impl.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

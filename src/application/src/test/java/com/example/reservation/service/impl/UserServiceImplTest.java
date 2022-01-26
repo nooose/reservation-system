@@ -1,4 +1,4 @@
-package com.example.reservation.service.Impl;
+package com.example.reservation.service.impl;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

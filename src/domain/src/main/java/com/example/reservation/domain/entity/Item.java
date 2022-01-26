@@ -4,12 +4,12 @@ import com.example.reservation.domain.dto.ItemDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +29,6 @@ public class Item {
 
     private int price;
 
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
@@ -42,9 +41,11 @@ public class Item {
     private List<Review> reviews = new ArrayList<>();
 
 
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    @Column(columnDefinition = "TIME")
+    private LocalTime startTime;
 
+    @Column(columnDefinition = "TIME")
+    private LocalTime endTime;
     @CreatedDate
     private LocalDateTime createAt;
 
@@ -57,7 +58,7 @@ public class Item {
     }
 
     @Builder
-    public Item(Long id, String title, String contents, int price, Company company, List<Order> orders, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime createAt) {
+    public Item(Long id, String title, String contents, int price, Company company, List<Order> orders, LocalTime startTime, LocalTime endTime, LocalDateTime createAt) {
         this.id = id;
         this.title = title;
         this.contents = contents;
@@ -69,4 +70,16 @@ public class Item {
         this.createAt = createAt;
     }
 
+    public Item(String title, String contents, int price, LocalTime startTime, LocalTime endTime) {
+        this.title = title;
+        this.contents = contents;
+        this.price = price;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+        company.addItem(this);
+    }
 }

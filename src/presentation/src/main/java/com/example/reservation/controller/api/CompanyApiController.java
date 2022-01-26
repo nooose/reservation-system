@@ -6,7 +6,7 @@ import com.example.reservation.domain.dto.ResponseCompanyDto;
 import com.example.reservation.domain.dto.ResponseDto;
 import com.example.reservation.domain.entity.Company;
 import com.example.reservation.domain.entity.Member;
-import com.example.reservation.service.Impl.CompanyServiceImpl;
+import com.example.reservation.service.impl.CompanyServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
