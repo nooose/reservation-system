@@ -28,7 +28,6 @@ public class Order {
     private int price;
 
 
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -79,5 +78,10 @@ public class Order {
                 this.item.getTitle(),
                 this.orderStatus,
                 this.startTime, this.endTime);
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        user.getOrders().add(this);
     }
 }

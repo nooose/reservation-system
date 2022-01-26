@@ -67,8 +67,4 @@ public class Company extends Member{
     public void changeCompanyName(String companyName) {
         this.companyName = companyName;
     }
-
-    public void addItem(Item item) {
-        items.add(item);
-    }
 }

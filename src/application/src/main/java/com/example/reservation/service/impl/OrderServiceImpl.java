@@ -65,7 +65,8 @@ public class OrderServiceImpl implements OrderService {
         order.setStartTime(startDateTime);
         order.setEndTime(endDateTime);
         order.setOrderStatus(OrderStatusType.COMPLETE);
-        user.addOrder(order);
+
+
 
         return order;
     }
