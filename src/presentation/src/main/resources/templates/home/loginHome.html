@@ -26,6 +26,13 @@
 
 
     <style>
+        .main-text {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            color: wheat;
+            margin: 1%;
+        }
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -67,10 +74,9 @@
                     </li>
                 </ul>
 
-                    <div>
-                        <a href="#" class="link-primary me-5" th:text="|${loginMember.name}님, 반갑습니다.|">로그인</a>
-                    </div>
-                    <div class="text-end">
+                <span class="main-text" th:text="|${loginMember.name}님, 반갑습니다. |"> 닉네임 </span>
+
+                <div class="text-end">
                         <form th:action="@{/logout}" method="post">
                             <button class="btn btn-secondary" onclick="location.href='index.html'" type="submit"> 로그아웃 </button>
                         </form>
