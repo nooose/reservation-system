@@ -70,7 +70,10 @@ class ItemDomainServiceTest {
 
         // then
         assertThat(findItem1.getTitle()).isEqualTo("테스트 상품A");
+        System.out.println(findItem2.getTitle() + " 시간 " + findItem1.getStartTime() + "~" + findItem1.getEndTime());
+
         assertThat(findItem2.getTitle()).isEqualTo("테스트 상품B");
+        System.out.println(findItem2.getTitle() + " 시간 " + findItem2.getStartTime() + "~" + findItem2.getEndTime());
 
 
         // 상품 주문
@@ -82,14 +85,25 @@ class ItemDomainServiceTest {
         memberRepository.save(user);
 
         User findUser1 = (User) memberRepository.findByEmail("user@test.com").get();
-        orderService.createOrder(findUser1.getId(), findItem1.getId());
-        orderService.createOrder(findUser1.getId(), findItem2.getId());
+        Order order1 = orderService.createOrder(findUser1.getId(), findItem1.getId());
+        Order order2 = orderService.createOrder(findUser1.getId(), findItem2.getId());
 
+
+        // when
+        orderService.order(order1);
+        orderService.order(order2);
+
+        // then
         User findUser2 = (User) memberRepository.findByEmail("user@test.com").get();
 
         List<Order> orders = findUser2.getOrders();
-        for (Order order : orders) {
-            System.out.println("주문 상품 명 = " + order.getItem().getTitle());
-        }
+        Order result1 = orders.get(0);
+        Order result2 = orders.get(1);
+
+        assertThat(result1.getItem().getTitle()).isEqualTo("테스트 상품A");
+        System.out.println(order1.getUser().getName() + "님의 주문 상품 = " + order1.getItem().getTitle());
+
+        assertThat(result2.getItem().getTitle()).isEqualTo("테스트 상품B");
+        System.out.println(order2.getUser().getName() + "님의 주문 상품 = " + order2.getItem().getTitle());
     }
 }

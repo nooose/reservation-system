@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public void createOrder(Long userId, Long itemId) {
+    public Order createOrder(Long userId, Long itemId) {
         User user = (User) userService.getMember(userId);
         Item item = itemDomainService.getItem(itemId);
 
@@ -65,12 +65,15 @@ public class OrderServiceImpl implements OrderService {
         order.setStartTime(startDateTime);
         order.setEndTime(endDateTime);
         order.setOrderStatus(OrderStatusType.COMPLETE);
-
-
         user.addOrder(order);
-        orderDomainService.save(order);
+
+        return order;
     }
 
+    @Override
+    public void order(Order order) {
+        orderDomainService.save(order);
+    }
 
     @Override
     @Transactional
@@ -78,6 +81,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = findOrder(orderId);
         order.setOrderStatus(OrderStatusType.CANCEL);
     }
+
 
 
     @Override

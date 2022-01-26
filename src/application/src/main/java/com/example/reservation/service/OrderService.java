@@ -7,7 +7,9 @@ import com.example.reservation.domain.entity.Order;
 public interface OrderService {
     Order createOrder(Long userId, Long itemId, ReqeustOrderDto reqeustOrderDto);
 
-    void createOrder(Long userId, Long itemId);
+    Order createOrder(Long userId, Long itemId);
+
+    void order(Order order);
 
     void cancelOrder(Long orderId);
 
