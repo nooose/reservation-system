@@ -30,7 +30,9 @@ public class MemberController {
         if (bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }
+
         memberService.join(memberForm);
+
 
         return "redirect:/";
     }

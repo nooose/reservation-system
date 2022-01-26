@@ -19,3 +19,7 @@ spring:
       hibernate:
         format_sql: true
     open-in-view: false
+
+# 메시지
+  messages:
+    basename: errors
