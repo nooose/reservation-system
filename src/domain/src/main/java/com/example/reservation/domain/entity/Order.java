@@ -39,7 +39,6 @@ public class Order {
     private Review review;
 
 
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="item_id")
     private Item item;
@@ -83,5 +82,10 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
         user.getOrders().add(this);
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+        item.getOrders().add(this);
     }
 }

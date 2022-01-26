@@ -58,17 +58,18 @@ public class OrderServiceImpl implements OrderService {
         LocalTime startTime = item.getStartTime();
         LocalTime endTime = item.getEndTime();
 
-        LocalDateTime startDateTime = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(),
-                startTime.getHour(), startTime.getMinute(), startTime.getSecond());
-        LocalDateTime endDateTime = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(),
-                endTime.getHour(), endTime.getMinute(), endTime.getSecond());
+        LocalDateTime startDateTime = createLocalDateTime(now, startTime);
+        LocalDateTime endDateTime = createLocalDateTime(now, endTime);
         order.setStartTime(startDateTime);
         order.setEndTime(endDateTime);
         order.setOrderStatus(OrderStatusType.COMPLETE);
 
-
-
         return order;
+    }
+
+    private LocalDateTime createLocalDateTime(LocalDateTime now, LocalTime endTime) {
+        return LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(),
+                endTime.getHour(), endTime.getMinute(), endTime.getSecond());
     }
 
     @Override
@@ -100,4 +101,5 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderById(Long orderId) {
         return orderDomainService.findById(orderId);
     }
+
 }
