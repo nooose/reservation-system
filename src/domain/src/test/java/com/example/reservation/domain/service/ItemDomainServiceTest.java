@@ -43,7 +43,8 @@ class ItemDomainServiceTest {
                 "010-1234-5678", "서울시", "동남로");
         Company company = companyForm.toEntity();
         memberRepository.save(company);
-        Company findCompany = (Company) memberRepository.findByEmail("company@test.com").orElseGet(() -> null);
+        Company findCompany = (Company) memberRepository.findByEmail("company@test.com")
+                                                            .orElseGet(() -> null);
 
 
         LocalTime startTime1 = LocalTime.of(9, 0, 0);
@@ -64,7 +65,8 @@ class ItemDomainServiceTest {
         itemDomainService.saveItem(item1);
         itemDomainService.saveItem(item2);
 
-        Company resultCompany = (Company) memberRepository.findByEmail("company@test.com").orElseGet(() -> null);
+        Company resultCompany = (Company) memberRepository.findByEmail("company@test.com")
+                                                            .orElseGet(() -> null);
         Item findItem1 = resultCompany.getItems().get(0);
         Item findItem2 = resultCompany.getItems().get(1);
 

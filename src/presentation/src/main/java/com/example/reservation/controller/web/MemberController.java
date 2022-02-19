@@ -33,7 +33,6 @@ public class MemberController {
 
         memberService.join(memberForm);
 
-
         return "redirect:/";
     }
 }
