@@ -1,19 +1,19 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.enumtype.CompanyCategory;
-import com.example.reservation.domain.enumtype.MemberRole;
-import lombok.AllArgsConstructor;
+import com.example.reservation.domain.dto.ItemDto;
+import com.example.reservation.domain.dto.ResponseCompanyDto;
+import com.example.reservation.domain.type.CompanyCategoryType;
+import com.example.reservation.domain.type.MemberRoleType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @DiscriminatorValue("C")
@@ -21,17 +21,50 @@ import java.util.List;
 @Getter
 public class Company extends Member{
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "company_id")
+    private Long id;
+
     private String registrationNumber;
     private String description;
+    private String companyName;
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    private List<Item> items = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    private CompanyCategory companyCategory;
+    private CompanyCategoryType companyCategory;
 
     @Builder
-    public Company(Long id, String email, String password, String nickName, String name, String phoneNumber, Address address, MemberRole memberRole, List<Board> boards, LocalDateTime createdAt, LocalDateTime lastLogin, String registrationNumber, String description, CompanyCategory companyCategory) {
+    public Company(Long id, String email, String password,
+                   String nickName, String name, String phoneNumber, Address address,
+                   MemberRoleType memberRole, List<Board> boards,
+                   LocalDateTime createdAt, LocalDateTime lastLogin,
+                   String registrationNumber, String description,
+                   String companyName, CompanyCategoryType companyCategory) {
+
         super(id, email, password, nickName, name, phoneNumber, address, memberRole, boards, createdAt, lastLogin);
+        this.id = id;
         this.registrationNumber = registrationNumber;
         this.description = description;
+        this.companyName = companyName;
         this.companyCategory = companyCategory;
+    }
+
+    public ResponseCompanyDto toResponseDto() {
+        ResponseCompanyDto responseCompanyDto = new ResponseCompanyDto();
+        responseCompanyDto.setCompanyName(this.getCompanyName());
+        responseCompanyDto.setName(this.getName());
+
+        List<ItemDto> collect = this.getItems().stream()
+                .map(Item::toDto)
+                .collect(Collectors.toList());
+        responseCompanyDto.setItems(collect);
+
+        return responseCompanyDto;
+    }
+
+    public void changeCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

@@ -1,16 +1,17 @@
 package com.example.reservation.domain.entity;
 
 import com.example.reservation.domain.Address;
-import com.example.reservation.domain.enumtype.MemberRole;
-import lombok.*;
+import com.example.reservation.domain.type.MemberRoleType;
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public abstract class Member {
-
+public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
@@ -40,14 +40,35 @@ public abstract class Member {
     private Address address;
 
     @Enumerated(EnumType.STRING)
-    private MemberRole memberRole;
+    @NotNull
+    private MemberRoleType memberRole;
 
     @OneToMany(mappedBy = "member")
     List<Board> boards = new ArrayList<>();
-
 
     @CreatedDate
     private LocalDateTime createdAt;
 
     private LocalDateTime lastLogin;
+
+
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public void changeNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public void changeAddress(Address address) {
+        this.address = address;
+    }
+
+    public void changePhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public User toUserObject() {
+        return (User) this;
+    }
 }

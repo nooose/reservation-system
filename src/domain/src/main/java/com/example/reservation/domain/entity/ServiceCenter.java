@@ -1,7 +1,6 @@
 package com.example.reservation.domain.entity;
 
-import com.example.reservation.domain.enumtype.ProcessType;
-import lombok.AllArgsConstructor;
+import com.example.reservation.domain.type.ProcessType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,6 @@ import java.time.LocalDateTime;
 @Entity
 @DiscriminatorValue("SC")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 
 public class ServiceCenter extends Board{

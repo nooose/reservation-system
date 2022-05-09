@@ -3,24 +3,23 @@ logging:
   level:
     root: info
 
-
-# H2
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2
-
-# Datasource
+# H2 Datasource
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:test
+    url: jdbc:h2:tcp://localhost/~/h2/db/rs
     username: sa
     password:
 
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
+    open-in-view: false
 
+# 메시지
+  messages:
+    basename: errors
